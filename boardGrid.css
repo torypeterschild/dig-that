@@ -3,8 +3,32 @@
     float: left;
     left: 0px;
     width: auto;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     background-color: #cccccc
+}
+.edgeWrapper {
+    position: relative;
+    float: left;
+    left: 0px;
+    width: auto;
+    margin-bottom: 0px;
+    background-color: #cccccc
+}
+.hedge1, .hedge2, .hedge3, .hedge4, .hedge5, .hedge6 {
+    position: relative;
+    float: left;
+    left: 0px;
+    width: 100px;
+    height: 10px;
+    background-color: #63f9ff
+}
+.corner0, .corner1, .corner2, .corner3, .corner4, .corner5, .corner6 {
+    position: relative;
+    float: left;
+    left: 0px;
+    width: 10px;
+    height: 10px;
+    background-color: #ff8800
 }
 .left1{
     position: relative;
@@ -73,5 +97,8 @@ body {
     background-color: yellow;
 }
 .edge0:hover, .edge1:hover, .edge2:hover, .edge3:hover, .edge4:hover, .edge6:hover {
+    background-color: #ff2e8a;
+}
+.hedge1:hover, .hedge2:hover, .hedge3:hover, .hedge4:hover, .hedge5:hover, .hedge6:hover {
     background-color: #ff2e8a;
 }
