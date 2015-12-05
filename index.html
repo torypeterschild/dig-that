@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dig That</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="500">
+        <p>Canvas not supported.</p>
+    </canvas>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+                    var canvas = $("#myCanvas").get(0);
+                    var context = canvas.getContext("2d");
+
+                    function renderContent()
+                    {
+                        // do drawing here
+                    }
+
+                    renderContent();
+                });
+    </script>
+</body>
+</html>
