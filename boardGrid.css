@@ -61,3 +61,6 @@ body {
     font-size: 90%;
     background-color: #e7e7de
 }
+.left1:hover, .left2:hover, .left3:hover, .left4:hover, .left5:hover, .left6:hover {
+    background-color: yellow;
+}
