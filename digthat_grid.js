@@ -5,6 +5,11 @@
 $(document).ready(function() {
     var canvas = $("#myCanvas").get(0);
     var context = canvas.getContext("2d");
+    var startAngle = 0.25;
+    var endAngle = 1.75;
+    var gapClosing = true;
+    var posX = 0;
+    var posY = 75;
 
     function renderGrid(gridPixelSize, color)
     {
@@ -35,6 +40,21 @@ $(document).ready(function() {
         context.restore();
     }
 
+    function setAngle()
+    {
+        if (startAngle <= 0) gapClosing = true;
+        else if (startAngle > 0.25) gapClosing = false;
+
+        if (gapClosing) {
+            startAngle = startAngle + 0.05;
+            endAngle = endAngle - 0.05;
+        }
+        else {
+            startAngle = startAngle - 0.05;
+            endAngle = endAngle + 0.05;
+        }
+    }
+
     function renderContent()
     {
         context.save();
@@ -46,12 +66,23 @@ $(document).ready(function() {
         context.beginPath();
         context.fillStyle = "Yellow";
         context.strokeStyle = "Yellow";
-        context.arc(100,75,50,0.25*Math.PI,1.75*Math.PI);
-        context.lineTo(100, 75);
+        context.arc(posX, posY, 50, startAngle * Math.PI, endAngle * Math.PI);
+        context.lineTo(posX, posY)
         context.stroke();
         context.fill();
         context.restore();
     }
 
-    renderContent();
+    function animationLoop()
+    {
+        canvas.width = canvas.width;
+        renderContent();
+        setAngle();
+        posX += 5;
+        if (posX > 500)
+            posX = 0;
+        setTimeout(animationLoop, 33);
+    }
+
+    animationLoop();
 });
