@@ -137,8 +137,11 @@ function Tunnel() {
 	}
 
 	this.validTunnel = function() {
+		//duplicate nodes and edges
+		var allEdges = this.edges.slice();
+		var allNodes = this.edges.slice();
+
 		var currNode = this.getStartNode();
-		console.log(currNode);
 		
 		//if there is no start node, tunnel is invalid
 		if (currNode == null) {
@@ -169,7 +172,7 @@ function Tunnel() {
 			if (currNode == this.getEndNode()) {
 				//if we've removed all the edges we're good
 				if (Object.keys(this.edges).length == 0) {
-					return true;
+					break;
 				}
 				else {
 					return false;
@@ -206,6 +209,10 @@ function Tunnel() {
 				currNode = currNode.edges[0].n2;
 			}
 		}
+
+		this.nodes = allNodes;
+		this.edges = allEdges;
+		return true;
 	}
 
 	this.clearTunnel = function() {
@@ -216,6 +223,25 @@ function Tunnel() {
 
 function getNodeId(x, y) {
 	return squareSize * y + x;
+}
+
+function getEdgeId(parentDivId, edgeDivClass) {
+	var row = parentDivId[:-1];
+	var num = parentDivId[-1];
+
+	var x,y;
+
+	if(row == "horiz") {
+		//even row
+		y = 2 * num;
+	} else {
+		//odd row
+		y = 2 * num + 1;
+	}
+
+	x = edgeDivClass[-1];
+
+	return y * squareSize + x;
 }
 
 
