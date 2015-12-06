@@ -1,4 +1,12 @@
 
+/**
+	TODO: 
+		1. add button for user to click to indicate they're done clicking on tunnels
+		2. add button for user to click to indicate they're done adding probes
+*/
+
+
+
 var squareSize = 4;
 
 function Node(x, y, id) {
@@ -243,6 +251,43 @@ function getEdgeId(parentDivId, edgeDivClass) {
 
 	return y * squareSize + x;
 }
+
+edge.addEventListener('click', function(evt) {
+	//if trying to add tunnel, make sure they still have tunnels to add
+	//if they don't, generate pop up that will tell them they either need
+		//to finish or remove a tunnel piece to add another ones
+
+	//change color -- if was already clicked, change to unclicked color
+		//if not clicked change to clicked color
+		//(should probably use jquery and toggle)
+
+	//determine if was clicked before or not and add/remove edge from tunnel class
+
+
+}, false);
+
+probe.addEventListener('click', function(evt) {
+	//also use jquery to toggle color
+	//add/remove from probes list
+
+}, false);
+
+doneAddingTunnels.addEventListener('click', function(evt) {
+	//check if a valid tunnel
+
+	//if yes make tunnel invisible and move on to probe section
+
+	//else explain rules of a valid tunnel and start over
+}, false);
+
+doneAddingProbes.addEventListener('click', function(evt) {
+	//check if after 1st hour or second
+
+	//if 1st, return results and let them place probes again
+
+	//if 2nd, return results
+}, false);
+
 
 
 var tunnel = new Tunnel();
