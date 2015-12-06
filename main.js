@@ -32,13 +32,13 @@ function Probe(x, y) {
 }
 
 function Board() {
-	this.edges = []
-	this.nodes = []
+	this.edges = [];
+	this.nodes = [];
 
 	id = 0;
 	for(var y = 0; y < (squareSize*squareSize); y++) {
 		for(var x = 0; x < (squareSize*squareSize); x++) {
-			nodes.push(new Node(x,y,id))
+			nodes.push(new Node(x,y,id));
 			id++;
 		}
 	}
@@ -61,22 +61,22 @@ function Tunnel() {
 	this.addNode = function(node) {
 		var nodeId = node.id;
 		this.nodes[nodeId] = node;
-	}
+	};
 
 	this.removeNode = function(node) {
 		var nodeId = node.id;
 		delete this.nodes[nodeId];
-	}
+	};
 
 	this.addEdge = function(edge) {
 		var edgeId = edge.id;
 		this.edges[edgeId] = edge;
-	}
+	};
 
 	this.removeEdge = function(edge1) {
 		var edgeId = edge1.id;
 		delete this.edges[edgeId];
-	}
+	};
 
 	this.getStartNode = function() {
 		//get all nodes that are touching the top row
@@ -94,7 +94,7 @@ function Tunnel() {
 		}
 
 		//out of all nodes on top row, get all that have just one edge
-		var validStarts = []
+		var validStarts = [];
 		for (var i = 0; i < starts.length; i++) {
 			if (starts[i].edges.length == 1) {
 				validStarts.push(starts[i]);
@@ -109,7 +109,7 @@ function Tunnel() {
 		else {
 			return null;
 		}
-	}
+	};
 
 	this.getEndNode = function() {
 		//get all nodes that are touching the bottom row
@@ -127,7 +127,7 @@ function Tunnel() {
 		}
 
 		//out of all nodes on top row, get all that have just one edge
-		var validEnds = []
+		var validEnds = [];
 		for (var i = 0; i < ends.length; i++) {
 			if (ends[i].edges.length == 1) {
 				validEnds.push(ends[i]);
@@ -142,7 +142,7 @@ function Tunnel() {
 		else {
 			return null;
 		}
-	}
+	};
 
 	this.validTunnel = function() {
 		//duplicate nodes and edges
@@ -221,7 +221,7 @@ function Tunnel() {
 		this.nodes = allNodes;
 		this.edges = allEdges;
 		return true;
-	}
+	};
 
 	this.clearTunnel = function() {
 		this.edges = {};
@@ -344,8 +344,8 @@ var endNode = tunnel.getEndNode();
 console.log(startNode);
 console.log(endNode);
 
-console.log("=================================")
-console.log("=================================")
+console.log("=================================");
+console.log("=================================");
 
 console.log(tunnel.validTunnel());
 
@@ -358,7 +358,7 @@ tunnel2.addNode(n0);
 tunnel2.addEdge(e1);
 tunnel2.addEdge(e2);
 
-console.log("=========================")
+console.log("=========================");
 //console.log(tunnel2.nodes);
 console.log("edges before delete" , tunnel2.edges);
 console.log("edge id" , e1.id);
