@@ -14,7 +14,7 @@
     margin-bottom: 0px;
     background-color: #cccccc
 }
-.hedge1, .hedge2, .hedge3, .hedge4, .hedge5, .hedge6 {
+.hedge1, .hedge2, .hedge3, .hedge4, .hedge5, .hedge0 {
     position: relative;
     float: left;
     left: 0px;
@@ -99,7 +99,7 @@ body {
 .edge0:hover, .edge1:hover, .edge2:hover, .edge3:hover, .edge4:hover, .edge5:hover, .edge6:hover {
     background-color: #ff2e8a;
 }
-.hedge1:hover, .hedge2:hover, .hedge3:hover, .hedge4:hover, .hedge5:hover, .hedge6:hover {
+.hedge1:hover, .hedge2:hover, .hedge3:hover, .hedge4:hover, .hedge5:hover, .hedge0:hover {
     background-color: #ff2e8a;
 }
 .corner0:hover, .corner1:hover,
