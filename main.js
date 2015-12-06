@@ -51,7 +51,7 @@ function Board() {
 function Game(boardSize) {
 	this.boardSize = boardSize;
 	this.tunnel = new Tunnel();
-	this.probes = []
+	this.probes = [];
 }
 
 function Tunnel() {
@@ -234,7 +234,7 @@ function getNodeId(x, y) {
 }
 
 function getEdgeId(parentDivId, edgeDivClass) {
-	var row = parentDivId[:-1];
+	var row = parentDivId[-1];
 	var num = parentDivId[-1];
 
 	var x,y;
@@ -252,27 +252,46 @@ function getEdgeId(parentDivId, edgeDivClass) {
 	return y * squareSize + x;
 }
 
-edge.addEventListener('click', function(evt) {
-	//if trying to add tunnel, make sure they still have tunnels to add
-	//if they don't, generate pop up that will tell them they either need
-		//to finish or remove a tunnel piece to add another ones
+// Get edges and add event listener to each one
+// TODO (Tory): make event listener do the following:
+// if trying to add tunnel, make sure they still have tunnels to add
+// if they don't, generate pop up that will tell them they either need
+// to finish or remove a tunnel piece to add another ones
 
-	//change color -- if was already clicked, change to unclicked color
-		//if not clicked change to clicked color
-		//(should probably use jquery and toggle)
+// change color -- if was already clicked, change to unclicked color
+// if not clicked change to clicked color
+// (should probably use jquery and toggle)
 
-	//determine if was clicked before or not and add/remove edge from tunnel class
+//determine if was clicked before or not and add/remove edge from tunnel class
+var edges = document.getElementsByClassName("edge");
 
+var edgeClicked = function() {
+    var attribute = this.getAttribute("class");
+    //alert(attribute);
+    this.style.background = this.style.background=='yellow'? '#63f9ff':'yellow';
+};
 
-}, false);
+for(var i=0;i<edges.length;i++){
+    edges[i].addEventListener('click', edgeClicked, false);
+}
 
-probe.addEventListener('click', function(evt) {
-	//also use jquery to toggle color
-	//add/remove from probes list
+// Get probes and add event listener to each one
+// TODO (Tory): make event listener do the following:
+// also use jquery to toggle color
+// add/remove from probes list
+var probes = document.getElementsByClassName("probe");
 
-}, false);
+var probeClicked = function() {
+    var attribute = this.getAttribute("class");
+    //alert(attribute);
+    this.style.background = this.style.background=='red'? 'blue':'red';
+};
 
-doneAddingTunnels.addEventListener('click', function(evt) {
+for(var i=0;i<probes.length;i++){
+    probes[i].addEventListener('click', probeClicked, false);
+}
+
+doneAddingTunnels.addEventListener("click", function(evt) {
 	//check if a valid tunnel
 
 	//if yes make tunnel invisible and move on to probe section
@@ -280,7 +299,7 @@ doneAddingTunnels.addEventListener('click', function(evt) {
 	//else explain rules of a valid tunnel and start over
 }, false);
 
-doneAddingProbes.addEventListener('click', function(evt) {
+doneAddingProbes.addEventListener("click", function(evt) {
 	//check if after 1st hour or second
 
 	//if 1st, return results and let them place probes again
