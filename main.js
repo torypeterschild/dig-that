@@ -1,13 +1,6 @@
 
-/**
-	TODO: 
-		1. add button for user to click to indicate they're done clicking on tunnels
-		2. add button for user to click to indicate they're done adding probes
-*/
-
+// Global variables
 var message = document.getElementById('message');
-
-
 var squareSize = 4;
 
 function Node(x, y, id) {
