@@ -107,3 +107,16 @@ body {
 .corner6:hover {
     background-color: #4878ff;
 }
+
+.button {
+    font-family: "Helvetica", Helvetica, sans-serif;
+    font-size: 10pt;
+    font-weight: bold;
+    color: black;
+    background-color: whitesmoke;
+    box-shadow: 1px 2px 1px 0 gray;
+    border: none;
+    /*-moz-border-radius: 15px;*/
+    /*-webkit-border-radius: 15px;*/
+    padding: 10px;
+}
