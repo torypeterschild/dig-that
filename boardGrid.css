@@ -30,8 +30,8 @@
     height: 10px;
     background-color: blue;
 }
-.left1{
-    position: relative;
+.left1, .left2, .left3, .left4, .left5, .left6 {
+    /*position: relative;*/
     float: left;
     left: 0px;
     width: 100px;
@@ -46,52 +46,26 @@
     height: 100px;
     background-color: #63f9ff
 }
-.left2{
-    position: relative;
-    float: left;
-    left: 0px;
-    width: 100px;
-    height: 100px;
-    background-color: #828282
-}
-.left3{
-    position: relative;
-    float: left;
-    left: 0px;
-    width: 100px;
-    height: 100px;
-    background-color: #828282
-}
-.left4{
-    position: relative;
-    float: left;
-    left: 0px;
-    width: 100px;
-    height: 100px;
-    background-color: #828282
-}
-.left5{
-    position: relative;
-    float: left;
-    left: 0px;
-    width: 100px;
-    height: 100px;
-    background-color: #828282
-}
-.left6{
-    position: relative;
-    float: left;
-    left: 0px;
-    width: 100px;
-    height: 100px;
-    background-color: #828282
-}
+
 body {
     border-width: 0px;
     padding: 0px;
     margin: 0px;
     font-size: 90%;
     background-color: #e7e7de
+}
+#buttonWrapper {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    float: left;
+    left: 10px;
+    font-family: sans-serif;
+}
+#buttonWrapper div {
+    margin-bottom: 10px;
+    margin-left: 10px;
+    left: 10px;
 }
 .left1:hover, .left2:hover, .left3:hover, .left4:hover, .left5:hover, .left6:hover {
     background-color: yellow;

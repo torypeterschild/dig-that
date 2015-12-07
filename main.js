@@ -5,6 +5,7 @@
 		2. add button for user to click to indicate they're done adding probes
 */
 
+var message = document.getElementById('message');
 
 
 var squareSize = 4;
@@ -284,6 +285,7 @@ var probes = document.getElementsByClassName("probe");
 var probeClicked = function() {
     var attribute = this.getAttribute("class");
     //alert(attribute);
+    message.innerHTML = "Testing message";
     this.style.background = this.style.background=='red'? 'blue':'red';
 };
 
