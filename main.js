@@ -1,8 +1,14 @@
 
 // Global variables
 var message = document.getElementById('message');
-var squareSize = 4;
+var squareSize = 6;
 var tunnelLength = 12;
+var numProbes = 0;
+var newGame = new Game(squareSize);
+//var newBoard = new Board();
+// storing this here temporarily for testing
+var tunnelTest = new Tunnel();
+
 
 function Node(x, y, id) {
 	this.x = x;
@@ -265,8 +271,10 @@ var edgeClicked = function() {
     if (tunnelLength <= 0) {
         remainingPieces.innerHTML = "There are no remaining edges! Please remove an edge to continue building.";
     } else {
+        //tunnelTest.edges.push(this.id);
         tunnelLength--;
         remainingPieces.innerHTML = "Edges left: " + tunnelLength;
+        currentTunnel.innerHTML = "You picked edge " + this.id;
     }
 
     this.style.background = this.style.background=='yellow'? '#63f9ff':'yellow';
@@ -283,7 +291,9 @@ for(var i=0;i<edges.length;i++){
 var probes = document.getElementsByClassName("probe");
 
 var probeClicked = function() {
-    message.innerHTML = "Probe clicked";
+    ++numProbes;
+    probeCount.innerHTML = "You have placed " + numProbes + " probe(s).";
+    //message.innerHTML = "Probe clicked";
     this.style.background = this.style.background=='red'? 'blue':'red';
 };
 
@@ -292,6 +302,8 @@ for(var i=0;i<probes.length;i++){
 }
 
 var startGame = function () {
+    document.getElementById('start').style.display = 'none';
+    document.getElementById('tunnelDone').style.display = 'block';
     tunnelInfo.innerHTML = "Tunnel can be up to " + tunnelLength + " edges long.";
     remainingPieces.innerHTML = "Edges left: " + tunnelLength;
     //message.innerHTML = "Detector, please look away while Badguy builds a tunnel.";
@@ -299,7 +311,11 @@ var startGame = function () {
 };
 
 var doneAddingTunnels = function () {
+    document.getElementById('tunnelDone').style.display = 'none';
+    document.getElementById('probesPlaced').style.display = 'block';
     tunnelInfo.innerHTML = "";
+    remainingPieces.innerHTML = "";
+    currentTunnel.innerHTML = "";
     message.innerHTML = "Done adding tunnels. Time for Detector to place probes.";
     //check if a valid tunnel
     //if yes make tunnel invisible and move on to probe section
