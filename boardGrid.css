@@ -3,92 +3,101 @@
     overflow: hidden;
     z-index: -1;
 }
+
 #gridWrapper {
-    position: absolute;
+    position: relative;
     z-index: 0;
-    width: auto;
+    width: 960px;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 .wrapper{
     position: relative;
     float: left;
-    left: 0px;
     width: auto;
-    margin-bottom: 0px;
-    background-color: #cccccc
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff;
 }
+
 .edgeWrapper {
     position: relative;
     float: left;
-    left: 0px;
     width: auto;
-    margin-bottom: 0px;
-    background-color: #cccccc
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff;
 }
+
 .hedge1, .hedge2, .hedge3, .hedge4, .hedge5, .hedge0 {
     position: relative;
     float: left;
-    left: 0px;
-    width: 100px;
+    width: 70px;
     height: 10px;
     background-color: #63f9ff
 }
+
 .corner0, .corner1, .corner2, .corner3, .corner4, .corner5, .corner6 {
     position: relative;
     float: left;
-    left: 0px;
     width: 10px;
     height: 10px;
     background-color: blue;
 }
+
 .left1, .left2, .left3, .left4, .left5, .left6 {
-    /*position: relative;*/
+    position: relative;
     float: left;
-    left: 0px;
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     background-color: #828282
 }
+
 .edge0, .edge1, .edge2, .edge3, .edge4, .edge5, .edge6 {
     position: relative;
     float: left;
     left: 0px;
     width: 10px;
-    height: 100px;
+    height: 70px;
     background-color: #63f9ff
 }
 
 body {
     border-width: 0px;
     padding: 0px;
-    margin: 0px;
     font-size: 90%;
-    background-color: #e7e7de
+    background-color: #ffffff;
 }
+
 #buttonWrapper {
     position: relative;
     margin-top: 10px;
     margin-bottom: 10px;
-    margin-left: 10px;
-    float: left;
-    padding-left: 10px;
+    display: inline-block;
+    padding-left: 5px;
     font-family: sans-serif;
     width: 300px;
 }
+
 #buttonWrapper div {
     margin-bottom: 10px;
     margin-left: 10px;
     left: 10px;
 }
+
 .left1:hover, .left2:hover, .left3:hover, .left4:hover, .left5:hover, .left6:hover {
     background-color: yellow;
 }
+
 .edge0:hover, .edge1:hover, .edge2:hover, .edge3:hover, .edge4:hover, .edge5:hover, .edge6:hover {
     background-color: #ff2e8a;
 }
+
 .hedge1:hover, .hedge2:hover, .hedge3:hover, .hedge4:hover, .hedge5:hover, .hedge0:hover {
     background-color: #ff2e8a;
 }
+
 .corner0:hover, .corner1:hover,
 .corner2:hover, .corner3:hover,
 .corner4:hover, .corner5:hover,
