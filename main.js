@@ -2,6 +2,7 @@
 // Global variables
 var message = document.getElementById('message');
 var squareSize = 4;
+var tunnelLength = 12;
 
 function Node(x, y, id) {
 	this.x = x;
@@ -260,8 +261,14 @@ function getEdgeId(parentDivId, edgeDivClass) {
 var edges = document.getElementsByClassName("edge");
 
 var edgeClicked = function() {
-    var attribute = this.getAttribute("class");
-    //alert(attribute);
+    //message.innerHTML = "Edge clicked.";
+    if (tunnelLength <= 0) {
+        remainingPieces.innerHTML = "There are no remaining edges! Please remove an edge to continue building.";
+    } else {
+        tunnelLength--;
+        remainingPieces.innerHTML = "Edges left: " + tunnelLength;
+    }
+
     this.style.background = this.style.background=='yellow'? '#63f9ff':'yellow';
 };
 
@@ -276,9 +283,7 @@ for(var i=0;i<edges.length;i++){
 var probes = document.getElementsByClassName("probe");
 
 var probeClicked = function() {
-    var attribute = this.getAttribute("class");
-    //alert(attribute);
-    message.innerHTML = "Testing message";
+    message.innerHTML = "Probe clicked";
     this.style.background = this.style.background=='red'? 'blue':'red';
 };
 
@@ -287,10 +292,14 @@ for(var i=0;i<probes.length;i++){
 }
 
 var startGame = function () {
-    message.innerHTML = "Detector, please look away while Badguy builds a tunnel.";
+    tunnelInfo.innerHTML = "Tunnel can be up to " + tunnelLength + " edges long.";
+    remainingPieces.innerHTML = "Edges left: " + tunnelLength;
+    //message.innerHTML = "Detector, please look away while Badguy builds a tunnel.";
+    alert("Detector, please look away while Badguy builds a tunnel.");
 };
 
 var doneAddingTunnels = function () {
+    tunnelInfo.innerHTML = "";
     message.innerHTML = "Done adding tunnels. Time for Detector to place probes.";
     //check if a valid tunnel
     //if yes make tunnel invisible and move on to probe section
