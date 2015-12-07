@@ -1,3 +1,14 @@
+#canvas {
+    position: absolute;
+    overflow: hidden;
+    z-index: 30;
+}
+#gridWrapper {
+    position: absolute;
+    z-index: 0;
+    width: auto;
+}
+
 .wrapper{
     position: relative;
     float: left;
@@ -55,12 +66,14 @@ body {
     background-color: #e7e7de
 }
 #buttonWrapper {
+    position: relative;
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 10px;
     float: left;
-    left: 10px;
+    padding-left: 10px;
     font-family: sans-serif;
+    width: 300px;
 }
 #buttonWrapper div {
     margin-bottom: 10px;

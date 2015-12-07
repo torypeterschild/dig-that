@@ -293,21 +293,30 @@ for(var i=0;i<probes.length;i++){
     probes[i].addEventListener('click', probeClicked, false);
 }
 
-doneAddingTunnels.addEventListener("click", function(evt) {
-	//check if a valid tunnel
+var startGame = function () {
+    message.innerHTML = "Detector, please look away while Badguy builds a tunnel.";
+};
 
-	//if yes make tunnel invisible and move on to probe section
+var doneAddingTunnels = function () {
+    message.innerHTML = "Done adding tunnels. Time for Detector to place probes.";
+    //check if a valid tunnel
+    //if yes make tunnel invisible and move on to probe section
+    //else explain rules of a valid tunnel and start over
+};
 
-	//else explain rules of a valid tunnel and start over
-}, false);
+var doneAddingProbes = function () {
+    message.innerHTML = "Done adding probes. Let's see how you did.";
+    //check if after 1st hour or second
+    //if 1st, return results and let them place probes again
+    //if 2nd, return results
+};
 
-doneAddingProbes.addEventListener("click", function(evt) {
-	//check if after 1st hour or second
+// Add button event listeners
+document.getElementById('start').addEventListener('click', startGame, false);
 
-	//if 1st, return results and let them place probes again
+document.getElementById('tunnelDone').addEventListener('click', doneAddingTunnels, false);
 
-	//if 2nd, return results
-}, false);
+document.getElementById('probesPlaced').addEventListener('click', doneAddingProbes, false);
 
 
 
