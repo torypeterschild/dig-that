@@ -4,6 +4,7 @@
 var squareSize = 6;
 var tunnelLength = 12;
 var numProbes = 0;
+var probesList = [];
 var tunnel = new Tunnel();
 
 
@@ -207,29 +208,6 @@ function Tunnel() {
 	}
 }
 
-function getNodeId(x, y) {
-	return squareSize * y + x;
-}
-
-function getEdgeId(parentDivId, edgeDivClass) {
-	var row = parentDivId[-1];
-	var num = parentDivId[-1];
-
-	var x,y;
-
-	if(row == "horiz") {
-		//even row
-		y = 2 * num;
-	} else {
-		//odd row
-		y = 2 * num + 1;
-	}
-
-	x = edgeDivClass[-1];
-
-	return y * squareSize + x;
-}
-
 // Get edges and add event listener to each one
 // TODO (Tory): make event listener do the following:
 // if trying to add tunnel, make sure they still have tunnels to add
@@ -336,7 +314,18 @@ for(var i=0;i<edges.length;i++){
 var probes = document.getElementsByClassName("probe");
 
 var probeClicked = function() {
-    ++numProbes;
+    probeId = this.id;
+    index = probesList.indexOf(probeId);
+    console.log("Numprobes: " + numProbes);
+    console.log("Index: " + index);
+    if (index < 0) {
+        probesList.push(probeId);
+        numProbes++;
+    } else {
+        probesList.splice(index, 1);
+        numProbes--;
+    }
+
     probeCount.innerHTML = "You have placed " + numProbes + " probe(s).";
     //message.innerHTML = "Probe clicked";
     this.style.background = this.style.background=='red'? 'blue':'red';
