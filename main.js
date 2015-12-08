@@ -7,15 +7,18 @@ var numProbes = 0;
 var tunnel = new Tunnel();
 
 
-function Node(x, y, id) {
-	this.x = x;
-	this.y = y;
+function Node(id) {
 	this.edges = [];
 	this.id = id;
 
 	this.addEdge = function(e0) {
 		this.edges.push(e0);
-	}
+	};
+
+    this.removeEdge = function(e0) {
+        var index = this.edges.indexOf(e0);
+        this.edges.splice(index, 1);
+    }
 }
 
 function Edge(n1, n2, id) {
@@ -241,22 +244,85 @@ function getEdgeId(parentDivId, edgeDivClass) {
 var edges = document.getElementsByClassName("edge");
 
 var edgeClicked = function() {
-    var parentNode = document.getElementById(this.id).parentNode;
-    var edgeClasses = this.className;
-    var edgeClass = edgeClasses.split(" ");
-    var edgeId = getEdgeId(parentNode.className, edgeClass[0]);
-    //message.innerHTML = "Edge clicked.";
+    // Check if there are no pieces
     if (tunnelLength <= 0) {
         remainingPieces.innerHTML = "There are no remaining edges! Please remove an edge to continue building.";
+        return;
+    }
+
+    var edgeId = this.id;
+    if (edgeId in tunnel.edges) {
+        // get nodes
+        tunnelLength++;
+        var n1 = tunnel.edges[edgeId].n1;
+        var n2 = tunnel.edges[edgeId].n2;
+        // remove this edge from each node's edge list
+        n1.removeEdge(tunnel.edges[edgeId]);
+        n2.removeEdge(tunnel.edges[edgeId]);
+        if (n1.edges.length == 0) {
+            tunnel.removeNode(n1);
+        }
+        if (n2.edges.length == 0) {
+            tunnel.removeNode(n2);
+        }
+        tunnel.removeEdge(tunnel.edges[edgeId]);
     } else {
-        //tunnelTest.edges.push(this.id);
         tunnelLength--;
-        remainingPieces.innerHTML = "Edges left: " + tunnelLength;
-        currentTunnel.innerHTML = "You picked edge " + this.id;
-        alert(edgeClass);
+        if (edgeId[0] == "h") {
+            var n1Id = edgeId.slice(1);
+            var n2Id = (Number(edgeId.slice(1)) + 1).toString();
+            var n1;
+            var n2;
+
+            if (n1Id in tunnel.nodes) {
+                n1 = tunnel.nodes[n1Id];
+            } else {
+                n1 = new Node(n1Id);
+                tunnel.addNode(n1);
+            }
+
+            if (n2Id in tunnel.nodes) {
+                n2 = tunnel.nodes[n2Id];
+            } else {
+                n2 = new Node(n2Id);
+                tunnel.addNode(n2);
+            }
+
+            var newEdge = new Edge(n1, n2, edgeId);
+            tunnel.addEdge(newEdge);
+            n1.addEdge(newEdge);
+            n2.addEdge(newEdge);
+        } else {
+            var n1Id = edgeId.slice(1);
+            var n2Id = (Number(edgeId.slice(1)) + squareSize + 1).toString();
+            var n1;
+            var n2;
+
+            if (n1Id in tunnel.nodes) {
+                n1 = tunnel.nodes[n1Id];
+            } else {
+                n1 = new Node(n1Id);
+                tunnel.addNode(n1);
+            }
+
+            if (n2Id in tunnel.nodes) {
+                n2 = tunnel.nodes[n2Id];
+            } else {
+                n2 = new Node(n2Id);
+                tunnel.addNode(n2);
+            }
+
+            var newEdge = new Edge(n1, n2, edgeId);
+            tunnel.addEdge(newEdge);
+            n1.addEdge(newEdge);
+            n2.addEdge(newEdge);
+        }
     }
 
     this.style.background = this.style.background=='yellow'? '#63f9ff':'yellow';
+    remainingPieces.innerHTML = "Edges left: " + tunnelLength;
+    currentTunnel.innerHTML = "You picked edge " + this.id;
+    console.log(tunnel.edges);
 };
 
 for(var i=0;i<edges.length;i++){
