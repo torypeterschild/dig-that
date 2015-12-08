@@ -125,10 +125,19 @@ function Tunnel() {
 
 	this.validTunnel = function() {
 		//duplicate nodes and edges
-		var allEdges = this.edges.slice();
-		var allNodes = this.edges.slice();
+		var allEdgeIds = [];
+        for (var item in this.edges) {
+            allEdgeIds.push(item);
+        }
+        console.log("All edge ids: ", allEdgeIds);
+		var allNodeIds = [];
+        for (var item in this.nodes) {
+            allNodeIds.push(item);
+        }
+        console.log("All nodes: ", allNodeIds);
 
 		var currNode = this.getStartNode();
+        console.log("Start node: ", currNode);
 		
 		//if there is no start node, tunnel is invalid
 		if (currNode == null) {
@@ -308,9 +317,6 @@ for(var i=0;i<edges.length;i++){
 }
 
 // Get probes and add event listener to each one
-// TODO (Tory): make event listener do the following:
-// also use jquery to toggle color
-// add/remove from probes list
 var probes = document.getElementsByClassName("probe");
 
 var probeClicked = function() {
@@ -345,6 +351,8 @@ var startGame = function () {
 };
 
 var doneAddingTunnels = function () {
+    var valid = tunnel.validTunnel();
+    console.log(valid);
     document.getElementById('tunnelDone').style.display = 'none';
     document.getElementById('probesPlaced').style.display = 'block';
     tunnelInfo.innerHTML = "";
