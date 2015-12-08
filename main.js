@@ -244,11 +244,6 @@ function getEdgeId(parentDivId, edgeDivClass) {
 var edges = document.getElementsByClassName("edge");
 
 var edgeClicked = function() {
-    // Check if there are no pieces
-    if (tunnelLength <= 0) {
-        remainingPieces.innerHTML = "There are no remaining edges! Please remove an edge to continue building.";
-        return;
-    }
 
     var edgeId = this.id;
     if (edgeId in tunnel.edges) {
@@ -267,6 +262,11 @@ var edgeClicked = function() {
         }
         tunnel.removeEdge(tunnel.edges[edgeId]);
     } else {
+        // Check if there are no pieces
+        if (tunnelLength <= 0) {
+            remainingPieces.innerHTML = "There are no remaining edges! Please remove an edge to continue building.";
+            return;
+        }
         tunnelLength--;
         if (edgeId[0] == "h") {
             var n1Id = edgeId.slice(1);
