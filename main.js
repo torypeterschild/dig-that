@@ -1,13 +1,10 @@
 
 // Global variables
-var message = document.getElementById('message');
+// var message = document.getElementById('message');
 var squareSize = 6;
 var tunnelLength = 12;
 var numProbes = 0;
-var newGame = new Game(squareSize);
-//var newBoard = new Board();
-// storing this here temporarily for testing
-var tunnelTest = new Tunnel();
+var tunnel = new Tunnel();
 
 
 function Node(x, y, id) {
@@ -30,29 +27,6 @@ function Edge(n1, n2, id) {
 function Probe(x, y) {
 	this.x = x;
 	this.y = y;
-}
-
-function Board() {
-	this.edges = [];
-	this.nodes = [];
-
-	id = 0;
-	for(var y = 0; y < (squareSize*squareSize); y++) {
-		for(var x = 0; x < (squareSize*squareSize); x++) {
-			nodes.push(new Node(x,y,id));
-			id++;
-		}
-	}
-
-	for (i = 0; i < 6; i++) {
-		edges.push(new Edge);
-	}
-}
-
-function Game(boardSize) {
-	this.boardSize = boardSize;
-	this.tunnel = new Tunnel();
-	this.probes = [];
 }
 
 function Tunnel() {
@@ -267,6 +241,10 @@ function getEdgeId(parentDivId, edgeDivClass) {
 var edges = document.getElementsByClassName("edge");
 
 var edgeClicked = function() {
+    var parentNode = document.getElementById(this.id).parentNode;
+    var edgeClasses = this.className;
+    var edgeClass = edgeClasses.split(" ");
+    var edgeId = getEdgeId(parentNode.className, edgeClass[0]);
     //message.innerHTML = "Edge clicked.";
     if (tunnelLength <= 0) {
         remainingPieces.innerHTML = "There are no remaining edges! Please remove an edge to continue building.";
@@ -275,6 +253,7 @@ var edgeClicked = function() {
         tunnelLength--;
         remainingPieces.innerHTML = "Edges left: " + tunnelLength;
         currentTunnel.innerHTML = "You picked edge " + this.id;
+        alert(edgeClass);
     }
 
     this.style.background = this.style.background=='yellow'? '#63f9ff':'yellow';
@@ -336,84 +315,6 @@ document.getElementById('tunnelDone').addEventListener('click', doneAddingTunnel
 
 document.getElementById('probesPlaced').addEventListener('click', doneAddingProbes, false);
 
-
-
-var tunnel = new Tunnel();
-var n0Id = getNodeId(1,0);
-var n0 = new Node(1,0, n0Id);
-var n1Id = getNodeId(2,0);
-var n1 = new Node(2,0, n1Id);
-var n2Id = getNodeId(2,1);
-var n2 = new Node(2,1,n2Id);
-var n3Id = getNodeId(1,1);
-var n3 = new Node(1,1,n3Id);
-var n4Id = getNodeId(1,2);
-var n4 = new Node(1,2,n4Id);
-var n5Id = getNodeId(1,3);
-var n5 = new Node(1,3,n5Id);
-
-var e0 = new Edge(n0, n1, 0);
-n0.addEdge(e0);
-n1.addEdge(e0);
-var e1 = new Edge(n1, n2, 1);
-n1.addEdge(e1);
-n2.addEdge(e1);
-var e2 = new Edge(n2, n3, 2);
-n2.addEdge(e2);
-n3.addEdge(e2);
-var e3 = new Edge(n3, n4, 3);
-n3.addEdge(e3);
-n4.addEdge(e3);
-var e4 = new Edge(n4, n5, 4);
-n4.addEdge(e4);
-n5.addEdge(e4);
-
-tunnel.addNode(n0);
-tunnel.addNode(n1);
-tunnel.addNode(n2);
-tunnel.addNode(n3);
-tunnel.addNode(n4);
-tunnel.addNode(n5);
-
-tunnel.addEdge(e0);
-tunnel.addEdge(e1);
-tunnel.addEdge(e2);
-tunnel.addEdge(e3);
-tunnel.addEdge(e4);
-
-console.log("NODES");
-console.log("nodes", tunnel.nodes);
-console.log("EDGES");
-console.log("edges", tunnel.edges);
-
-var startNode = tunnel.getStartNode();
-var endNode = tunnel.getEndNode();
-
-console.log(startNode);
-console.log(endNode);
-
-console.log("=================================");
-console.log("=================================");
-
-console.log(tunnel.validTunnel());
-
-
-
-var tunnel2 = new Tunnel();
-
-tunnel2.addNode(n1);
-tunnel2.addNode(n0);
-tunnel2.addEdge(e1);
-tunnel2.addEdge(e2);
-
-console.log("=========================");
-//console.log(tunnel2.nodes);
-console.log("edges before delete" , tunnel2.edges);
-console.log("edge id" , e1.id);
-tunnel2.removeEdge(e1);
-tunnel2.removeNode(n1);
-//console.log(tunnel2.nodes);
-console.log("edges after delete", tunnel2.edges);
 
 
 
