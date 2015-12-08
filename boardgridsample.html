@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dig That</title>
+    <link rel="stylesheet" href="boardGrid.css">
+</head>
+<body>
+<div style="position:relative; left:0; top:0%; height:5%;width:80%">
+    <h1 class="title">Dig That</h1>
+</div>
+<canvas id="canvas" width="400" height="400"></canvas>
+<div id="gridWrapper">
+
+<div class="edgeWrapper" id="horiz0">
+    <div class="corner0 probe"></div>
+    <div id="h00" class="hedge0  edge"></div>
+    <div class="corner1 probe"></div>
+    <div id="h01" class="hedge1  edge"></div>
+    <div class="corner2 probe"></div>
+    <div id="h02" class="hedge2  edge"></div>
+    <div class="corner3 probe"></div>
+    <div id="h03" class="hedge3  edge"></div>
+    <div class="corner4 probe"></div>
+    <div id="h04" class="hedge4  edge"></div>
+    <div class="corner5 probe"></div>
+    <div id="h05" class="hedge5  edge"></div>
+    <div class="corner6 probe"></div>
+</div>
+<div class="wrapper" id="vert0">
+    <div id="v00" class="edge0 edge"></div>
+    <div class="left1"></div>
+    <div id="v01" class="edge1 edge"></div>
+    <div class="left2"></div>
+    <div id="v02" class="edge2 edge"></div>
+    <div class="left3"></div>
+    <div id="v03" class="edge3 edge"></div>
+    <div class="left4"></div>
+    <div id="v04" class="edge4 edge"></div>
+    <div class="left5"></div>
+    <div id="v05" class="edge5 edge"></div>
+    <div class="left6"></div>
+    <div id="v06" class="edge6 edge"></div>
+</div>
+<div class="edgeWrapper" id="horiz1">
+    <div class="corner0 probe"></div>
+    <div id="h10" class="hedge0  edge"></div>
+    <div class="corner1 probe"></div>
+    <div id="h11" class="hedge1  edge"></div>
+    <div class="corner2 probe"></div>
+    <div id="h12" class="hedge2  edge"></div>
+    <div class="corner3 probe"></div>
+    <div id="h13" class="hedge3  edge"></div>
+    <div class="corner4 probe"></div>
+    <div id="h14" class="hedge4  edge"></div>
+    <div class="corner5 probe"></div>
+    <div id="h15" class="hedge5  edge"></div>
+    <div class="corner6 probe"></div>
+</div>
+<div class="wrapper" id="vert1">
+    <div id="v10" class="edge0 edge"></div>
+    <div class="left1"></div>
+    <div id="v11" class="edge1 edge"></div>
+    <div class="left2"></div>
+    <div id="v12" class="edge2 edge"></div>
+    <div class="left3"></div>
+    <div id="v13" class="edge3 edge"></div>
+    <div class="left4"></div>
+    <div id="v14" class="edge4 edge"></div>
+    <div class="left5"></div>
+    <div id="v15" class="edge5 edge"></div>
+    <div class="left6"></div>
+    <div id="v16" class="edge6 edge"></div>
+</div>
+<div class="edgeWrapper" id="horiz2">
+    <div class="corner0 probe"></div>
+    <div id="h20" class="hedge0  edge"></div>
+    <div class="corner1 probe"></div>
+    <div id="h21" class="hedge1  edge"></div>
+    <div class="corner2 probe"></div>
+    <div id="h22" class="hedge2  edge"></div>
+    <div class="corner3 probe"></div>
+    <div id="h23" class="hedge3  edge"></div>
+    <div class="corner4 probe"></div>
+    <div id="h24" class="hedge4  edge"></div>
+    <div class="corner5 probe"></div>
+    <div id="h25" class="hedge5  edge"></div>
+    <div class="corner6 probe"></div>
+</div>
+<div class="wrapper" id="vert2">
+    <div id="v20" class="edge0 edge"></div>
+    <div class="left1"></div>
+    <div id="v21" class="edge1 edge"></div>
+    <div class="left2"></div>
+    <div id="v22" class="edge2 edge"></div>
+    <div class="left3"></div>
+    <div id="v23" class="edge3 edge"></div>
+    <div class="left4"></div>
+    <div id="v24" class="edge4 edge"></div>
+    <div class="left5"></div>
+    <div id="v25" class="edge5 edge"></div>
+    <div class="left6"></div>
+    <div id="v26" class="edge6 edge"></div>
+</div>
+<div class="edgeWrapper" id="horiz3">
+    <div class="corner0 probe"></div>
+    <div id="h30" class="hedge0  edge"></div>
+    <div class="corner1 probe"></div>
+    <div id="h31" class="hedge1  edge"></div>
+    <div class="corner2 probe"></div>
+    <div id="h32" class="hedge2  edge"></div>
+    <div class="corner3 probe"></div>
+    <div id="h33" class="hedge3  edge"></div>
+    <div class="corner4 probe"></div>
+    <div id="h34" class="hedge4  edge"></div>
+    <div class="corner5 probe"></div>
+    <div id="h35" class="hedge5  edge"></div>
+    <div class="corner6 probe"></div>
+</div>
+<div class="wrapper" id="vert3">
+    <div id="v30" class="edge0 edge"></div>
+    <div class="left1"></div>
+    <div id="v31" class="edge1 edge"></div>
+    <div class="left2"></div>
+    <div id="v32" class="edge2 edge"></div>
+    <div class="left3"></div>
+    <div id="v33" class="edge3 edge"></div>
+    <div class="left4"></div>
+    <div id="v34" class="edge4 edge"></div>
+    <div class="left5"></div>
+    <div id="v35" class="edge5 edge"></div>
+    <div class="left6"></div>
+    <div id="v36" class="edge6 edge"></div>
+</div>
+<div class="edgeWrapper" id="horiz4">
+    <div class="corner0 probe"></div>
+    <div id="h40" class="hedge0  edge"></div>
+    <div class="corner1 probe"></div>
+    <div id="h41" class="hedge1  edge"></div>
+    <div class="corner2 probe"></div>
+    <div id="h42" class="hedge2  edge"></div>
+    <div class="corner3 probe"></div>
+    <div id="h43" class="hedge3  edge"></div>
+    <div class="corner4 probe"></div>
+    <div id="h44" class="hedge4  edge"></div>
+    <div class="corner5 probe"></div>
+    <div id="h45" class="hedge5  edge"></div>
+    <div class="corner6 probe"></div>
+</div>
+<div class="wrapper" id="vert4">
+    <div id="v40" class="edge0 edge"></div>
+    <div class="left1"></div>
+    <div id="v41" class="edge1 edge"></div>
+    <div class="left2"></div>
+    <div id="v42" class="edge2 edge"></div>
+    <div class="left3"></div>
+    <div id="v43" class="edge3 edge"></div>
+    <div class="left4"></div>
+    <div id="v44" class="edge4 edge"></div>
+    <div class="left5"></div>
+    <div id="v45" class="edge5 edge"></div>
+    <div class="left6"></div>
+    <div id="v46" class="edge6 edge"></div>
+</div>
+<div class="edgeWrapper" id="horiz5">
+    <div class="corner0 probe"></div>
+    <div id="h50" class="hedge0  edge"></div>
+    <div class="corner1 probe"></div>
+    <div id="h51" class="hedge1  edge"></div>
+    <div class="corner2 probe"></div>
+    <div id="h52" class="hedge2  edge"></div>
+    <div class="corner3 probe"></div>
+    <div id="h53" class="hedge3  edge"></div>
+    <div class="corner4 probe"></div>
+    <div id="h54" class="hedge4  edge"></div>
+    <div class="corner5 probe"></div>
+    <div id="h55" class="hedge5  edge"></div>
+    <div class="corner6 probe"></div>
+</div>
+<div class="wrapper" id="vert5">
+    <div id="v50" class="edge0 edge"></div>
+    <div class="left1"></div>
+    <div id="v51" class="edge1 edge"></div>
+    <div class="left2"></div>
+    <div id="v52" class="edge2 edge"></div>
+    <div class="left3"></div>
+    <div id="v53" class="edge3 edge"></div>
+    <div class="left4"></div>
+    <div id="v54" class="edge4 edge"></div>
+    <div class="left5"></div>
+    <div id="v55" class="edge5 edge"></div>
+    <div class="left6"></div>
+    <div id="v56" class="edge6 edge"></div>
+</div>
+<div class="edgeWrapper" id="horiz6">
+    <div class="corner0 probe"></div>
+    <div id="h60" class="hedge0  edge"></div>
+    <div class="corner1 probe"></div>
+    <div id="h61" class="hedge1  edge"></div>
+    <div class="corner2 probe"></div>
+    <div id="h62" class="hedge2  edge"></div>
+    <div class="corner3 probe"></div>
+    <div id="h63" class="hedge3  edge"></div>
+    <div class="corner4 probe"></div>
+    <div id="h64" class="hedge4  edge"></div>
+    <div class="corner5 probe"></div>
+    <div id="h65" class="hedge5  edge"></div>
+    <div class="corner6 probe"></div>
+</div>
+    <div id="infoPanel">
+        <div id="tunnelInfo"></div>
+        <div id="remainingPieces"></div>
+        <div id="currentTunnel"></div>
+        <div id="probeCount"></div>
+        <div id="message"></div>
+        <div>
+            <input type="button" class="button" id="start" value="Start Game" style="display: block">
+            <input type="button" class="button" id="tunnelDone" value="Tunnel done!" style="display: none">
+            <input type="button" class="button" id="probesPlaced" value="Probes placed!" style="display: none">
+        </div>
+    </div>
+</div>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
