@@ -1,7 +1,7 @@
 
 // Global variables
 // var message = document.getElementById('message');
-var squareSize = 6;
+var boardSize = 6;
 var tunnelLength = 12;
 var numProbes = 0;
 var probesList = [];
@@ -67,7 +67,7 @@ function Tunnel() {
 			}
 
 			node = this.nodes[nodeId];
-			if (node.y == 0) {
+			if (Number(node.id) < (boardSize + 1)) {
 				starts.push(node);
 			}
 		}
@@ -77,12 +77,15 @@ function Tunnel() {
 		for (var i = 0; i < starts.length; i++) {
 			if (starts[i].edges.length == 1) {
 				validStarts.push(starts[i]);
+                console.log("valid starts: ", validStarts);
 			}
 		}
 
 		//if there is just one such node, it's our start
 		//else there isn't a valid start node and tunnel is invalid
+        console.log("length of validStarts: ", validStarts.length);
 		if (validStarts.length == 1) {
+            console.log("validStarts[0] is ", validStarts[0]);
 			return validStarts[0];
 		}
 		else {
@@ -100,7 +103,7 @@ function Tunnel() {
 			}
 
 			node = this.nodes[nodeId];
-			if (node.y == (squareSize-1)) {
+			if (Number(node.id) > (boardSize * (boardSize + 1))) {
 				ends.push(node);
 			}
 		}
@@ -148,6 +151,7 @@ function Tunnel() {
 		if (this.getEndNode() == null) {
 			return false;
 		}
+        console.log("end node: ", this.getEndNode());
 
 		//remove start node and it's only edge from total
 		this.removeNode(currNode);
@@ -281,7 +285,7 @@ var edgeClicked = function() {
             n2.addEdge(newEdge);
         } else {
             var n1Id = edgeId.slice(1);
-            var n2Id = (Number(edgeId.slice(1)) + squareSize + 1).toString();
+            var n2Id = (Number(edgeId.slice(1)) + boardSize + 1).toString();
             var n1;
             var n2;
 
