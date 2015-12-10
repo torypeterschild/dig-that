@@ -1,3 +1,6 @@
+/**
+ * Created by torypeterschild on 12/9/15.
+ */
 
 // Global variables
 // var message = document.getElementById('message');
@@ -7,6 +10,30 @@ var numProbes = 0;
 var probesList = [];
 var tunnel = new Tunnel();
 
+$(function() {
+	$("#start").click(function(){
+		$("#lookaway").show();
+		$("#lookaway").delay(4000).fadeOut();
+	});
+});
+
+$(function() {
+	$(".hedgeAnim").click(function() {
+		$(this).toggleClass("animate");
+	});
+});
+
+$(function() {
+	$(".probeAnim").click(function() {
+		$(this).toggleClass("animate");
+	});
+});
+
+$(function() {
+	$(".vedgeAnim").click(function() {
+		$(this).toggleClass("animate");
+	});
+});
 
 function Node(id) {
 	this.edges = [];
@@ -16,10 +43,10 @@ function Node(id) {
 		this.edges.push(e0);
 	};
 
-    this.removeEdge = function(e0) {
-        var index = this.edges.indexOf(e0);
-        this.edges.splice(index, 1);
-    }
+	this.removeEdge = function(e0) {
+		var index = this.edges.indexOf(e0);
+		this.edges.splice(index, 1);
+	}
 }
 
 function Edge(n1, n2, id) {
@@ -77,15 +104,15 @@ function Tunnel() {
 		for (var i = 0; i < starts.length; i++) {
 			if (starts[i].edges.length == 1) {
 				validStarts.push(starts[i]);
-                console.log("valid starts: ", validStarts);
+				console.log("valid starts: ", validStarts);
 			}
 		}
 
 		//if there is just one such node, it's our start
 		//else there isn't a valid start node and tunnel is invalid
-        console.log("length of validStarts: ", validStarts.length);
+		console.log("length of validStarts: ", validStarts.length);
 		if (validStarts.length == 1) {
-            console.log("validStarts[0] is ", validStarts[0]);
+			console.log("validStarts[0] is ", validStarts[0]);
 			return validStarts[0];
 		}
 		else {
@@ -129,19 +156,19 @@ function Tunnel() {
 	this.validTunnel = function() {
 		//duplicate nodes and edges
 		var allEdgeIds = [];
-        for (var item in this.edges) {
-            allEdgeIds.push(item);
-        }
-        console.log("All edge ids: ", allEdgeIds);
+		for (var item in this.edges) {
+			allEdgeIds.push(item);
+		}
+		console.log("All edge ids: ", allEdgeIds);
 		var allNodeIds = [];
-        for (var item in this.nodes) {
-            allNodeIds.push(item);
-        }
-        console.log("All nodes: ", allNodeIds);
+		for (var item in this.nodes) {
+			allNodeIds.push(item);
+		}
+		console.log("All nodes: ", allNodeIds);
 
 		var currNode = this.getStartNode();
-        console.log("Start node: ", currNode);
-		
+		console.log("Start node: ", currNode);
+
 		//if there is no start node, tunnel is invalid
 		if (currNode == null) {
 			return false;
@@ -151,7 +178,7 @@ function Tunnel() {
 		if (this.getEndNode() == null) {
 			return false;
 		}
-        console.log("end node: ", this.getEndNode());
+		console.log("end node: ", this.getEndNode());
 
 		//remove start node and it's only edge from total
 		this.removeNode(currNode);
@@ -160,7 +187,7 @@ function Tunnel() {
 		//get 2nd node
 		if(currNode.edges[0].n1 != currNode) {
 			currNode = currNode.edges[0].n1;
-		} 
+		}
 		else {
 			currNode = currNode.edges[0].n2;
 		}
@@ -204,7 +231,7 @@ function Tunnel() {
 			//get the next node
 			if(currNode.edges[0].n1 != currNode) {
 				currNode = currNode.edges[0].n1;
-			} 
+			}
 			else {
 				currNode = currNode.edges[0].n2;
 			}
@@ -236,143 +263,143 @@ var edges = document.getElementsByClassName("edge");
 
 var edgeClicked = function() {
 
-    var edgeId = this.id;
-    if (edgeId in tunnel.edges) {
-        // get nodes
-        tunnelLength++;
-        var n1 = tunnel.edges[edgeId].n1;
-        var n2 = tunnel.edges[edgeId].n2;
-        // remove this edge from each node's edge list
-        n1.removeEdge(tunnel.edges[edgeId]);
-        n2.removeEdge(tunnel.edges[edgeId]);
-        if (n1.edges.length == 0) {
-            tunnel.removeNode(n1);
-        }
-        if (n2.edges.length == 0) {
-            tunnel.removeNode(n2);
-        }
-        tunnel.removeEdge(tunnel.edges[edgeId]);
-    } else {
-        // Check if there are no pieces
-        if (tunnelLength <= 0) {
-            remainingPieces.innerHTML = "There are no remaining edges! Please remove an edge to continue building.";
-            return;
-        }
-        tunnelLength--;
-        if (edgeId[0] == "h") {
-            var n1Id = edgeId.slice(1);
-            var n2Id = (Number(edgeId.slice(1)) + 1).toString();
-            var n1;
-            var n2;
+	var edgeId = this.id;
+	if (edgeId in tunnel.edges) {
+		// get nodes
+		tunnelLength++;
+		var n1 = tunnel.edges[edgeId].n1;
+		var n2 = tunnel.edges[edgeId].n2;
+		// remove this edge from each node's edge list
+		n1.removeEdge(tunnel.edges[edgeId]);
+		n2.removeEdge(tunnel.edges[edgeId]);
+		if (n1.edges.length == 0) {
+			tunnel.removeNode(n1);
+		}
+		if (n2.edges.length == 0) {
+			tunnel.removeNode(n2);
+		}
+		tunnel.removeEdge(tunnel.edges[edgeId]);
+	} else {
+		// Check if there are no pieces
+		if (tunnelLength <= 0) {
+			remainingPieces.innerHTML = "There are no remaining edges! Please remove an edge to continue building.";
+			return;
+		}
+		tunnelLength--;
+		if (edgeId[0] == "h") {
+			var n1Id = edgeId.slice(1);
+			var n2Id = (Number(edgeId.slice(1)) + 1).toString();
+			var n1;
+			var n2;
 
-            if (n1Id in tunnel.nodes) {
-                n1 = tunnel.nodes[n1Id];
-            } else {
-                n1 = new Node(n1Id);
-                tunnel.addNode(n1);
-            }
+			if (n1Id in tunnel.nodes) {
+				n1 = tunnel.nodes[n1Id];
+			} else {
+				n1 = new Node(n1Id);
+				tunnel.addNode(n1);
+			}
 
-            if (n2Id in tunnel.nodes) {
-                n2 = tunnel.nodes[n2Id];
-            } else {
-                n2 = new Node(n2Id);
-                tunnel.addNode(n2);
-            }
+			if (n2Id in tunnel.nodes) {
+				n2 = tunnel.nodes[n2Id];
+			} else {
+				n2 = new Node(n2Id);
+				tunnel.addNode(n2);
+			}
 
-            var newEdge = new Edge(n1, n2, edgeId);
-            tunnel.addEdge(newEdge);
-            n1.addEdge(newEdge);
-            n2.addEdge(newEdge);
-        } else {
-            var n1Id = edgeId.slice(1);
-            var n2Id = (Number(edgeId.slice(1)) + boardSize + 1).toString();
-            var n1;
-            var n2;
+			var newEdge = new Edge(n1, n2, edgeId);
+			tunnel.addEdge(newEdge);
+			n1.addEdge(newEdge);
+			n2.addEdge(newEdge);
+		} else {
+			var n1Id = edgeId.slice(1);
+			var n2Id = (Number(edgeId.slice(1)) + boardSize + 1).toString();
+			var n1;
+			var n2;
 
-            if (n1Id in tunnel.nodes) {
-                n1 = tunnel.nodes[n1Id];
-            } else {
-                n1 = new Node(n1Id);
-                tunnel.addNode(n1);
-            }
+			if (n1Id in tunnel.nodes) {
+				n1 = tunnel.nodes[n1Id];
+			} else {
+				n1 = new Node(n1Id);
+				tunnel.addNode(n1);
+			}
 
-            if (n2Id in tunnel.nodes) {
-                n2 = tunnel.nodes[n2Id];
-            } else {
-                n2 = new Node(n2Id);
-                tunnel.addNode(n2);
-            }
+			if (n2Id in tunnel.nodes) {
+				n2 = tunnel.nodes[n2Id];
+			} else {
+				n2 = new Node(n2Id);
+				tunnel.addNode(n2);
+			}
 
-            var newEdge = new Edge(n1, n2, edgeId);
-            tunnel.addEdge(newEdge);
-            n1.addEdge(newEdge);
-            n2.addEdge(newEdge);
-        }
-    }
+			var newEdge = new Edge(n1, n2, edgeId);
+			tunnel.addEdge(newEdge);
+			n1.addEdge(newEdge);
+			n2.addEdge(newEdge);
+		}
+	}
 
-    this.style.background = this.style.background=='yellow'? '#63f9ff':'yellow';
-    remainingPieces.innerHTML = "Edges left: " + tunnelLength;
-    currentTunnel.innerHTML = "You picked edge " + this.id;
-    console.log(tunnel.edges);
+	//this.style.background = this.style.background=='yellow'? '#63f9ff':'yellow';
+	remainingPieces.innerHTML = "Edges left: " + tunnelLength;
+	currentTunnel.innerHTML = "You picked edge " + this.id;
+	console.log(tunnel.edges);
 };
 
 for(var i=0;i<edges.length;i++){
-    edges[i].addEventListener('click', edgeClicked, false);
+	edges[i].addEventListener('click', edgeClicked, false);
 }
 
 // Get probes and add event listener to each one
 var probes = document.getElementsByClassName("probe");
 
 var probeClicked = function() {
-    probeId = this.id;
-    index = probesList.indexOf(probeId);
-    console.log("Numprobes: " + numProbes);
-    console.log("Index: " + index);
-    if (index < 0) {
-        probesList.push(probeId);
-        numProbes++;
-    } else {
-        probesList.splice(index, 1);
-        numProbes--;
-    }
+	probeId = this.id;
+	index = probesList.indexOf(probeId);
+	console.log("Numprobes: " + numProbes);
+	console.log("Index: " + index);
+	if (index < 0) {
+		probesList.push(probeId);
+		numProbes++;
+	} else {
+		probesList.splice(index, 1);
+		numProbes--;
+	}
 
-    probeCount.innerHTML = "You have placed " + numProbes + " probe(s).";
-    //message.innerHTML = "Probe clicked";
-    this.style.background = this.style.background=='red'? 'blue':'red';
+	probeCount.innerHTML = "You have placed " + numProbes + " probe(s).";
+	//message.innerHTML = "Probe clicked";
+	this.style.background = this.style.background=='red'? 'blue':'red';
 };
 
 for(var i=0;i<probes.length;i++){
-    probes[i].addEventListener('click', probeClicked, false);
+	probes[i].addEventListener('click', probeClicked, false);
 }
 
 var startGame = function () {
-    document.getElementById('start').style.display = 'none';
-    document.getElementById('tunnelDone').style.display = 'block';
-    tunnelInfo.innerHTML = "Tunnel can be up to " + tunnelLength + " edges long.";
-    remainingPieces.innerHTML = "Edges left: " + tunnelLength;
-    //message.innerHTML = "Detector, please look away while Badguy builds a tunnel.";
-    alert("Detector, please look away while Badguy builds a tunnel.");
+	document.getElementById('start').style.display = 'none';
+	document.getElementById('tunnelDone').style.display = 'block';
+	tunnelInfo.innerHTML = "Tunnel can be up to " + tunnelLength + " edges long.";
+	remainingPieces.innerHTML = "Edges left: " + tunnelLength;
+	//message.innerHTML = "Detector, please look away while Badguy builds a tunnel.";
+	//alert("Detector, please look away while Badguy builds a tunnel.");
 };
 
 var doneAddingTunnels = function () {
-    var valid = tunnel.validTunnel();
-    console.log(valid);
-    document.getElementById('tunnelDone').style.display = 'none';
-    document.getElementById('probesPlaced').style.display = 'block';
-    tunnelInfo.innerHTML = "";
-    remainingPieces.innerHTML = "";
-    currentTunnel.innerHTML = "";
-    message.innerHTML = "Done adding tunnels. Time for Detector to place probes.";
-    //check if a valid tunnel
-    //if yes make tunnel invisible and move on to probe section
-    //else explain rules of a valid tunnel and start over
+	var valid = tunnel.validTunnel();
+	console.log(valid);
+	document.getElementById('tunnelDone').style.display = 'none';
+	document.getElementById('probesPlaced').style.display = 'block';
+	tunnelInfo.innerHTML = "";
+	remainingPieces.innerHTML = "";
+	currentTunnel.innerHTML = "";
+	message.innerHTML = "Done adding tunnels. Time for Detector to place probes.";
+	//check if a valid tunnel
+	//if yes make tunnel invisible and move on to probe section
+	//else explain rules of a valid tunnel and start over
 };
 
 var doneAddingProbes = function () {
-    message.innerHTML = "Done adding probes. Let's see how you did.";
-    //check if after 1st hour or second
-    //if 1st, return results and let them place probes again
-    //if 2nd, return results
+	message.innerHTML = "Done adding probes. Let's see how you did.";
+	//check if after 1st hour or second
+	//if 1st, return results and let them place probes again
+	//if 2nd, return results
 };
 
 // Add button event listeners

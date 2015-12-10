@@ -2,19 +2,38 @@
     font-family: "Helvetica", Helvetica, sans-serif;
 }
 
-#canvas {
-    position: absolute;
-    overflow: hidden;
-    z-index: -1;
-}
-
 #gridWrapper {
     position: relative;
-    z-index: 0;
     width: 960px;
     margin-left:auto;
     margin-right:auto;
 }
+
+div.popup {
+    border:none;
+    padding-top:20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    width: 400px;
+    height: 100px;
+    line-height: 1.5;
+    text-align: left;
+    display:none;
+    position:absolute;
+    left:20%;
+    top:50%;
+    margin:-40px 0 0 -120px;
+    background-color: orange;
+    -moz-box-shadow: 10px 10px 5px #888888;
+    -webkit-box-shadow: 10px 10px 5px #888888;
+    -o-box-shadow: 10px 10px 5px #888888;
+    box-shadow: 10px 10px 5px #888888;
+    font-family: "Helvetica", Helvetica, sans-serif;
+    font-variant: all-small-caps;
+    font-size: 15pt;
+}
+
 
 .wrapper{
     position: relative;
@@ -34,12 +53,16 @@
     background-color: #ffffff;
 }
 
-.hedge1, .hedge2, .hedge3, .hedge4, .hedge5, .hedge0 {
+.hedge0, .hedge1, .hedge2, .hedge3, .hedge4, .hedge5 {
     position: relative;
     float: left;
     width: 70px;
     height: 10px;
-    background-color: #63f9ff
+    background-color: #191919;
+    -webkit-transition: width 2s ease, height 2s ease;
+    -moz-transition: width 2s ease, height 2s ease;
+    -o-transition: width 2s ease, height 2s ease;
+    transition: width 2s ease, height 2s ease;
 }
 
 .corner0, .corner1, .corner2, .corner3, .corner4, .corner5, .corner6 {
@@ -48,6 +71,10 @@
     width: 10px;
     height: 10px;
     background-color: blue;
+    -webkit-transition: width 2s ease, height 2s ease;
+    -moz-transition: width 2s ease, height 2s ease;
+    -o-transition: width 2s ease, height 2s ease;
+    transition: width 2s ease, height 2s ease;
 }
 
 .left1, .left2, .left3, .left4, .left5, .left6 {
@@ -55,21 +82,25 @@
     float: left;
     width: 70px;
     height: 70px;
-    background-color: #cdcdcd
+    background-color: #fff;
 }
 
-.edge0, .edge1, .edge2, .edge3, .edge4, .edge5, .edge6 {
+.vedge {
     position: relative;
     float: left;
     left: 0px;
     width: 10px;
     height: 70px;
-    background-color: #63f9ff
+    background-color: #191919;
+    -webkit-transition: width 2s ease, height 2s ease;
+    -moz-transition: width 2s ease, height 2s ease;
+    -o-transition: width 2s ease, height 2s ease;
+    transition: width 2s ease, height 2s ease;
 }
 
 body {
     border-width: 0px;
-    padding: 0px;
+    padding: auto;
     font-size: 100%;
     background-color: #ffffff;
 }
@@ -115,15 +146,453 @@ body {
     background-color: #4878ff;
 }
 
-.button {
-    font-family: "Helvetica", Helvetica, sans-serif;
-    font-size: 10pt;
-    font-weight: bold;
-    color: black;
-    background-color: whitesmoke;
-    box-shadow: 1px 2px 1px 0 gray;
-    border: none;
-    /*-moz-border-radius: 15px;*/
-    /*-webkit-border-radius: 15px;*/
-    padding: 10px;
+.probe.animate {
+    animation-name: probePlaced;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+}
+
+.hedge.animate {
+    animation-name: edgeSelected;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+}
+
+.vedge.animate {
+    animation-name: vedgeSelected;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+}
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+
+/*
+ * Animation for a horizontal edge that has been clicked
+ */
+@keyframes edgeSelected {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 70px;
+        height: 20px;
+        background: #13b0f8;
+    }
+
+    66% {
+        width: 70px;
+        height: 20px;
+        background: #13b0f8;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #13b0f8;
+    }
+}
+
+@-moz-keyframes edgeSelected {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 70px;
+        height: 20px;
+        background: #13b0f8;
+    }
+
+    66% {
+        width: 70px;
+        height: 20px;
+        background: #13b0f8;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #13b0f8;
+    }
+}
+
+@-webkit-keyframes edgeSelected {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 70px;
+        height: 20px;
+        background: #13b0f8;
+    }
+
+    66% {
+        width: 70px;
+        height: 20px;
+        background: #13b0f8;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #13b0f8;
+    }
+}
+
+@-o-keyframes edgeSelected {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 70px;
+        height: 20px;
+        background: #13b0f8;
+    }
+
+    66% {
+        width: 70px;
+        height: 20px;
+        background: #13b0f8;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #13b0f8;
+    }
+}
+
+@-ms-keyframes edgeSelected {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 70px;
+        height: 20px;
+        background: #13b0f8;
+    }
+
+    66% {
+        width: 70px;
+        height: 20px;
+        background: #13b0f8;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #13b0f8;
+    }
+}
+
+/*
+ * Animation for a vertical edge that has been clicked
+ */
+@keyframes vedgeSelected {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 20px;
+        height: 70px;
+        background: #13b0f8;
+    }
+
+    66% {
+        width: 20px;
+        height: 70px;
+        background: #13b0f8;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #13b0f8;
+    }
+}
+
+@-moz-keyframes vedgeSelected {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 20px;
+        height: 70px;
+        background: #13b0f8;
+    }
+
+    66% {
+        width: 20px;
+        height: 70px;
+        background: #13b0f8;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #13b0f8;
+    }
+}
+
+@-webkit-keyframes vedgeSelected {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 20px;
+        height: 70px;
+        background: #13b0f8;
+    }
+
+    66% {
+        width: 20px;
+        height: 70px;
+        background: #13b0f8;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #13b0f8;
+    }
+}
+
+@-o-keyframes vedgeSelected {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 20px;
+        height: 70px;
+        background: #13b0f8;
+    }
+
+    66% {
+        width: 20px;
+        height: 70px;
+        background: #13b0f8;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #13b0f8;
+    }
+}
+
+@-ms-keyframes vedgeSelected {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 20px;
+        height: 70px;
+        background: #13b0f8;
+    }
+
+    66% {
+        width: 20px;
+        height: 70px;
+        background: #13b0f8;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #13b0f8;
+    }
+}
+
+
+/*
+ * Animation for a probe that has been clicked
+ */
+@keyframes probePlaced {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #00ffe5;
+        border-radius: 50%;
+    }
+
+    33% {
+        width: 20px;
+        height: 20px;
+        background: #ffd630;
+        border-radius: 50%;
+    }
+
+    66% {
+        width: 20px;
+        height: 20px;
+        background: #ffd630;
+        border-radius: 50%;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #ffd630;
+        border-radius: 50%;
+    }
+}
+
+@-moz-keyframes probePlaced {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #00ffe5;
+        border-radius: 50%;
+    }
+
+    33% {
+        width: 20px;
+        height: 20px;
+        background: #ffd630;
+        border-radius: 50%;
+    }
+
+    66% {
+        width: 20px;
+        height: 20px;
+        background: #ffd630;
+        border-radius: 50%;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #ffd630;
+        border-radius: 50%;
+    }
+}
+
+@-webkit-keyframes probePlaced {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #00ffe5;
+        border-radius: 50%;
+    }
+
+    33% {
+        width: 20px;
+        height: 20px;
+        background: #ffd630;
+        border-radius: 50%;
+    }
+
+    66% {
+        width: 20px;
+        height: 20px;
+        background: #ffd630;
+        border-radius: 50%;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #ffd630;
+        border-radius: 50%;
+    }
+}
+
+@-o-keyframes probePlaced {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #00ffe5;
+        border-radius: 50%;
+    }
+
+    33% {
+        width: 20px;
+        height: 20px;
+        background: #ffd630;
+        border-radius: 50%;
+    }
+
+    66% {
+        width: 20px;
+        height: 20px;
+        background: #ffd630;
+        border-radius: 50%;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #ffd630;
+        border-radius: 50%;
+    }
+}
+
+@-ms-keyframes probePlaced {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #00ffe5;
+        border-radius: 50%;
+    }
+
+    33% {
+        width: 20px;
+        height: 20px;
+        background: #ffd630;
+        border-radius: 50%;
+    }
+
+    66% {
+        width: 20px;
+        height: 20px;
+        background: #ffd630;
+        border-radius: 50%;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #ffd630;
+        border-radius: 50%;
+    }
 }
