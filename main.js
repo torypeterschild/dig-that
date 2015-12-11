@@ -368,7 +368,7 @@ var probeClicked = function() {
 	console.log("Numprobes: " + numProbes);
 	console.log("Index: " + index);
 	if (index < 0) {
-		probesList.push(probeId);
+		probesList.push(probeId.slice(1));
 		numProbes++;
 	} else {
 		probesList.splice(index, 1);
@@ -401,9 +401,11 @@ var doneAddingTunnels = function () {
 	remainingPieces.innerHTML = "";
 	currentTunnel.innerHTML = "";
 	message.innerHTML = "Done adding tunnels. Time for Detector to place probes.";
-	//for (var e in tunnel.edges) {
-	//	$("e.id").toggleClass("animate");
-	//}
+	for (var e in tunnel.edges) {
+		console.log("TRYING TO UNHIGHLIGHT");
+		console.log("tunnel.edges[e].id is ", tunnel.edges[e].id);
+		$("#" + tunnel.edges[e].id).toggleClass("animate");
+	}
 	//check if a valid tunnel
 	//if yes make tunnel invisible and move on to probe section
 	//else explain rules of a valid tunnel and start over
@@ -415,11 +417,13 @@ var doneAddingTunnels = function () {
 
 var doneAddingProbes = function () {
 	message.innerHTML = "Done adding probes. Let's see how you did.";
-	edgesFound = [];
 	for (var i = 0; i < probesList.length; i++) {
+		console.log("probesList[i] is ", probesList[i]);
 		if (probesList[i] in tunnel.nodes) {
-			for (var j = 0; j < tunnel.nodes[probesList[j]].edges.length; j++) {
-				$(this).toggleClass("animate");
+			console.log("we got in the if statement");
+			for (var j = 0; j < tunnel.nodes[probesList[i]].edges.length; j++) {
+				console.log("Found edge ", tunnel.nodes[probesList[i]].edges[j].id);
+				$("#" + tunnel.nodes[probesList[i]].edges[j].id).toggleClass("animate");
 			}
 		}
 	}
