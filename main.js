@@ -154,6 +154,8 @@ function Tunnel() {
 	};
 
 	this.validTunnel = function() {
+		console.log("EDGE INFO ", this.edges);
+		console.log("NODES ", this.nodes);
 		//duplicate nodes and edges
 		var allEdgeIds = [];
 		for (var item in this.edges) {
@@ -181,8 +183,9 @@ function Tunnel() {
 		console.log("end node: ", this.getEndNode());
 
 		//remove start node and it's only edge from total
-		this.removeNode(currNode);
-		this.removeEdge(currNode.edges[0]);
+		//this.removeNode(currNode);
+		//this.removeEdge(currNode.edges[0]);
+		allEdgeIds.splice(allEdgeIds.indexOf(currNode.edges[0].id, 1));
 
 		//get 2nd node
 		if(currNode.edges[0].n1 != currNode) {
@@ -197,49 +200,52 @@ function Tunnel() {
 
 			//end conditions
 			if (currNode == this.getEndNode()) {
+				console.log("Reached end node");
 				//if we've removed all the edges we're good
-				if (Object.keys(this.edges).length == 0) {
-					break;
+				if (allEdgeIds.length == 0) {
+					return true;
 				}
 				else {
+					console.log("AllEdgeIds does NOT == 0");
 					return false;
 				}
 			}
 
 			//check that each node we reach only has 2 edges
 			if(currNode.edges.length != 2) {
+				console.log(currNode, "doesn't have 2 edges");
 				return false;
 			}
 
 			//check that one of the two edges is still alive
 			var nextEdge = null;
-			for (var e in currNode.edges) {
-				if (e.id in this.edges) {
-					nextEdge = e;
+			console.log("curr node edges:", currNode.edges);
+			console.log("All edge Ids: ", allEdgeIds);
+			for (var i = 0; i < currNode.edges.length; i++) {
+				console.log("currNode.edges[i].id ", currNode.edges[i].id);
+				if (allEdgeIds.indexOf(currNode.edges[i].id) > -1) {
+					nextEdge = this.edges[currNode.edges[i].id];
 				}
 			}
 
 			//neither edge still in total list, tunnel invalid
-			if (e == null) {
+			if (nextEdge == null) {
+				console.log(nextEdge, "neither edge still in total list");
 				return false;
 			}
 
 			//clean up - remove curr node and curr edge
-			this.removeEdge(nextEdge);
-			this.removeNode(currNode);
+			allEdgeIds.splice(allEdgeIds.indexOf(nextEdge.id, 1));
 
 			//get the next node
-			if(currNode.edges[0].n1 != currNode) {
-				currNode = currNode.edges[0].n1;
+			if(nextEdge.n1 != currNode) {
+				currNode = nextEdge.n1;
 			}
 			else {
-				currNode = currNode.edges[0].n2;
+				currNode = nextEdge.n2;
 			}
 		}
 
-		this.nodes = allNodes;
-		this.edges = allEdges;
-		return true;
 	};
 
 	this.clearTunnel = function() {
