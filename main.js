@@ -183,9 +183,7 @@ function Tunnel() {
 		console.log("end node: ", this.getEndNode());
 
 		//remove start node and it's only edge from total
-		//this.removeNode(currNode);
-		//this.removeEdge(currNode.edges[0]);
-		allEdgeIds.splice(allEdgeIds.indexOf(currNode.edges[0].id, 1));
+		allEdgeIds.splice(allEdgeIds.indexOf(currNode.edges[0].id), 1);
 
 		//get 2nd node
 		if(currNode.edges[0].n1 != currNode) {
@@ -235,7 +233,7 @@ function Tunnel() {
 			}
 
 			//clean up - remove curr node and curr edge
-			allEdgeIds.splice(allEdgeIds.indexOf(nextEdge.id, 1));
+			allEdgeIds.splice(allEdgeIds.indexOf(nextEdge.id), 1);
 
 			//get the next node
 			if(nextEdge.n1 != currNode) {
@@ -268,7 +266,6 @@ function Tunnel() {
 var edges = document.getElementsByClassName("edge");
 
 var edgeClicked = function() {
-
 	var edgeId = this.id;
 	if (edgeId in tunnel.edges) {
 		// get nodes
@@ -293,8 +290,13 @@ var edgeClicked = function() {
 		}
 		tunnelLength--;
 		if (edgeId[0] == "h") {
-			var n1Id = edgeId.slice(1);
-			var n2Id = (Number(edgeId.slice(1)) + 1).toString();
+			console.log("slice: ", edgeId.slice(1));
+			var rNum = Math.floor(edgeId.slice(1) / boardSize);
+			console.log("rNum: ", rNum);
+			var n1Id = Number(edgeId.slice(1)) + rNum;
+			var n2Id = (n1Id + 1).toString();
+			console.log("n1Id: ", n1Id);
+			console.log("n2Id: ", n2Id);
 			var n1;
 			var n2;
 
@@ -319,6 +321,8 @@ var edgeClicked = function() {
 		} else {
 			var n1Id = edgeId.slice(1);
 			var n2Id = (Number(edgeId.slice(1)) + boardSize + 1).toString();
+			console.log("n1Id: ", n1Id);
+			console.log("n2Id: ", n2Id);
 			var n1;
 			var n2;
 
@@ -347,6 +351,7 @@ var edgeClicked = function() {
 	remainingPieces.innerHTML = "Edges left: " + tunnelLength;
 	currentTunnel.innerHTML = "You picked edge " + this.id;
 	console.log(tunnel.edges);
+	console.log("Tunnel nodes: ", tunnel.nodes);
 };
 
 for(var i=0;i<edges.length;i++){
@@ -358,6 +363,7 @@ var probes = document.getElementsByClassName("probe");
 
 var probeClicked = function() {
 	probeId = this.id;
+	console.log("Probe id: ", probeId);
 	index = probesList.indexOf(probeId);
 	console.log("Numprobes: " + numProbes);
 	console.log("Index: " + index);
@@ -370,7 +376,6 @@ var probeClicked = function() {
 	}
 
 	probeCount.innerHTML = "You have placed " + numProbes + " probe(s).";
-	//message.innerHTML = "Probe clicked";
 	this.style.background = this.style.background=='red'? 'blue':'red';
 };
 
@@ -396,13 +401,28 @@ var doneAddingTunnels = function () {
 	remainingPieces.innerHTML = "";
 	currentTunnel.innerHTML = "";
 	message.innerHTML = "Done adding tunnels. Time for Detector to place probes.";
+	//for (var e in tunnel.edges) {
+	//	$("e.id").toggleClass("animate");
+	//}
 	//check if a valid tunnel
 	//if yes make tunnel invisible and move on to probe section
 	//else explain rules of a valid tunnel and start over
 };
 
+//$(function() {
+//	$(this).toggleClass("animate");
+//});
+
 var doneAddingProbes = function () {
 	message.innerHTML = "Done adding probes. Let's see how you did.";
+	edgesFound = [];
+	for (var i = 0; i < probesList.length; i++) {
+		if (probesList[i] in tunnel.nodes) {
+			for (var j = 0; j < tunnel.nodes[probesList[j]].edges.length; j++) {
+				$(this).toggleClass("animate");
+			}
+		}
+	}
 	//check if after 1st hour or second
 	//if 1st, return results and let them place probes again
 	//if 2nd, return results
