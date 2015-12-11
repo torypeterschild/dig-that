@@ -59,10 +59,12 @@ div.popup {
     width: 70px;
     height: 10px;
     background-color: #191919;
+    border-radius: 3px;
     -webkit-transition: width 2s ease, height 2s ease;
     -moz-transition: width 2s ease, height 2s ease;
     -o-transition: width 2s ease, height 2s ease;
     transition: width 2s ease, height 2s ease;
+    z-index: 0;
 }
 
 .corner0, .corner1, .corner2, .corner3, .corner4, .corner5, .corner6 {
@@ -70,11 +72,13 @@ div.popup {
     float: left;
     width: 10px;
     height: 10px;
+    border-radius: 2px;
     background-color: blue;
     -webkit-transition: width 2s ease, height 2s ease;
     -moz-transition: width 2s ease, height 2s ease;
     -o-transition: width 2s ease, height 2s ease;
     transition: width 2s ease, height 2s ease;
+    z-index: 0;
 }
 
 .left1, .left2, .left3, .left4, .left5, .left6 {
@@ -83,6 +87,7 @@ div.popup {
     width: 70px;
     height: 70px;
     background-color: #fff;
+    border-radius: 3px;
 }
 
 .vedge {
@@ -92,10 +97,12 @@ div.popup {
     width: 10px;
     height: 70px;
     background-color: #191919;
+    border-radius: 3px;
     -webkit-transition: width 2s ease, height 2s ease;
     -moz-transition: width 2s ease, height 2s ease;
     -o-transition: width 2s ease, height 2s ease;
     transition: width 2s ease, height 2s ease;
+    z-index: 0;
 }
 
 body {
@@ -125,6 +132,12 @@ body {
     margin-bottom: 10px;
     margin-left: 10px;
     left: 10px;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 10px;
+    line-height: 1.65;
 }
 
 .left1:hover, .left2:hover, .left3:hover, .left4:hover, .left5:hover, .left6:hover {
