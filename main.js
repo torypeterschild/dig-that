@@ -396,7 +396,7 @@ var doneAddingTunnels = function () {
 	var valid = tunnel.validTunnel();
 	console.log(valid);
 	document.getElementById('tunnelDone').style.display = 'none';
-	document.getElementById('probesPlaced').style.display = 'block';
+	document.getElementById('probesPlaced1').style.display = 'block';
 	tunnelInfo.innerHTML = "";
 	remainingPieces.innerHTML = "";
 	currentTunnel.innerHTML = "";
@@ -423,13 +423,19 @@ var doneAddingProbes = function () {
 			console.log("we got in the if statement");
 			for (var j = 0; j < tunnel.nodes[probesList[i]].edges.length; j++) {
 				console.log("Found edge ", tunnel.nodes[probesList[i]].edges[j].id);
-				$("#" + tunnel.nodes[probesList[i]].edges[j].id).toggleClass("animate");
+				$("#" + tunnel.nodes[probesList[i]].edges[j].id).addClass("animate");
 			}
 		}
 	}
-	//check if after 1st hour or second
-	//if 1st, return results and let them place probes again
-	//if 2nd, return results
+	// Iterate through probesList to turn off and delete
+	for (var i = 0; i < probesList.length; i++) {
+		$("#p" + probesList[i]).toggleClass("animate");
+	}
+
+	probesList = [];
+	console.log("probes list after done ", probesList);
+	document.getElementById('probesPlaced1').style.display = 'none';
+	document.getElementById('probesPlaced2').style.display = 'block';
 };
 
 // Add button event listeners
@@ -437,7 +443,9 @@ document.getElementById('start').addEventListener('click', startGame, false);
 
 document.getElementById('tunnelDone').addEventListener('click', doneAddingTunnels, false);
 
-document.getElementById('probesPlaced').addEventListener('click', doneAddingProbes, false);
+document.getElementById('probesPlaced1').addEventListener('click', doneAddingProbes, false);
+
+document.getElementById('probesPlaced2').addEventListener('click', doneAddingProbes, false);
 
 
 
