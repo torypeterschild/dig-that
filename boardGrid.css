@@ -186,6 +186,24 @@ p {
     animation-fill-mode: forwards;
 }
 
+.hedge.final {
+    animation-name: hedgeFinal;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+}
+
+.vedge.final {
+    animation-name: vedgeFinal;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+}
+
 /* ==========================================================================
    ANIMATIONS
    ========================================================================== */
@@ -455,6 +473,275 @@ p {
         background: #13b0f8;
     }
 }
+
+/*
+ * Animation for final guesses
+ */
+
+@keyframes hedgeFinal {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 70px;
+        height: 20px;
+        background: #12bb2b;
+    }
+
+    66% {
+        width: 70px;
+        height: 20px;
+        background: #12bb2b;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #12bb2b;
+    }
+}
+
+@-moz-keyframes hedgeFinal {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 70px;
+        height: 20px;
+        background: #12bb2b;
+    }
+
+    66% {
+        width: 70px;
+        height: 20px;
+        background: #12bb2b;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #12bb2b;
+    }
+}
+
+@-webkit-keyframes hedgeFinal {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 70px;
+        height: 20px;
+        background: #12bb2b;
+    }
+
+    66% {
+        width: 70px;
+        height: 20px;
+        background: #12bb2b;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #12bb2b;
+    }
+}
+
+@-o-keyframes hedgeSelected {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 70px;
+        height: 20px;
+        background: #12bb2b;
+    }
+
+    66% {
+        width: 70px;
+        height: 20px;
+        background: #12bb2b;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #12bb2b;
+    }
+}
+
+@-ms-keyframes hedgeFinal {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 70px;
+        height: 20px;
+        background: #12bb2b;
+    }
+
+    66% {
+        width: 70px;
+        height: 20px;
+        background: #12bb2b;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #12bb2b;
+    }
+}
+
+/*
+ * Animation for a vertical edge final selection
+ */
+@keyframes vedgeFinal {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 20px;
+        height: 70px;
+        background: #12bb2b;
+    }
+
+    66% {
+        width: 20px;
+        height: 70px;
+        background: #12bb2b;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #12bb2b;
+    }
+}
+
+@-moz-keyframes vedgeFinal {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 20px;
+        height: 70px;
+        background: #12bb2b;
+    }
+
+    66% {
+        width: 20px;
+        height: 70px;
+        background: #12bb2b;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #12bb2b;
+    }
+}
+
+@-webkit-keyframes vedgeFinal {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 20px;
+        height: 70px;
+        background: #12bb2b;
+    }
+
+    66% {
+        width: 20px;
+        height: 70px;
+        background: #12bb2b;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #12bb2b;
+    }
+}
+
+@-o-keyframes vedgeFinal {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 20px;
+        height: 70px;
+        background: #12bb2b;
+    }
+
+    66% {
+        width: 20px;
+        height: 70px;
+        background: #12bb2b;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #12bb2b;
+    }
+}
+
+@-ms-keyframes vedgeFinal {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+        background: #273df8;
+    }
+
+    33% {
+        width: 20px;
+        height: 70px;
+        background: #12bb2b;
+    }
+
+    66% {
+        width: 20px;
+        height: 70px;
+        background: #12bb2b;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+        background: #12bb2b;
+    }
+}
+
+
 
 
 /*
