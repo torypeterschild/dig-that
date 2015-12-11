@@ -411,10 +411,6 @@ var doneAddingTunnels = function () {
 	//else explain rules of a valid tunnel and start over
 };
 
-//$(function() {
-//	$(this).toggleClass("animate");
-//});
-
 var doneAddingProbes = function () {
 	message.innerHTML = "Done adding probes. Let's see how you did.";
 	for (var i = 0; i < probesList.length; i++) {
