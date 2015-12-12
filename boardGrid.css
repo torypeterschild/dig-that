@@ -144,7 +144,7 @@ p {
     background-color: yellow;
 }
 
-.edge0:hover, .edge1:hover, .edge2:hover, .edge3:hover, .edge4:hover, .edge5:hover, .edge6:hover {
+.edge:hover {
     background-color: #ff2e8a;
 }
 
