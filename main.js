@@ -394,11 +394,11 @@ var doneAddingTunnels = function () {
 	var valid = tunnel.validTunnel();
 	console.log(valid);
 
+	//if the tunnel isn't valid, don't let the game keep going
 	if(!valid) {
-		alert("Your tunnel is invalid. It must start on the top edge, end on the bottom edge, and be a simple path");
+		alert("Your tunnel is invalid. It must start on the top edge, end on the bottom edge, and be a single simple path");
 		return;
 	}
-
 
 	document.getElementById('tunnelDone').style.display = 'none';
 	document.getElementById('probesPlaced1').style.display = 'block';
