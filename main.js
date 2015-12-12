@@ -23,24 +23,6 @@ $(function() {
 	});
 });
 
-//$(function() {
-//	$(".hedgeAnim").click(function() {
-//		$(this).toggleClass("animate");
-//	});
-//});
-
-//$(function() {
-//	$(".probeAnim").click(function() {
-//		$(this).toggleClass("animate");
-//	});
-//});
-
-//$(function() {
-//	$(".vedgeAnim").click(function() {
-//		$(this).toggleClass("animate");
-//	});
-//});
-
 function Node(id) {
 	this.edges = [];
 	this.id = id;
@@ -407,9 +389,17 @@ var startGame = function () {
 	//alert("Detector, please look away while Badguy builds a tunnel.");
 };
 
+//TODO: need to actually stop them if they built a bad tunnel
 var doneAddingTunnels = function () {
 	var valid = tunnel.validTunnel();
 	console.log(valid);
+
+	if(!valid) {
+		alert("Your tunnel is invalid. It must start on the top edge, end on the bottom edge, and be a simple path");
+		return;
+	}
+
+
 	document.getElementById('tunnelDone').style.display = 'none';
 	document.getElementById('probesPlaced1').style.display = 'block';
 	tunnelInfo.innerHTML = "";
@@ -494,17 +484,4 @@ document.getElementById('probesPlaced1').addEventListener('click', doneAddingPro
 document.getElementById('probesPlaced2').addEventListener('click', doneAddingProbes, false);
 
 document.getElementById('submitGuess').addEventListener('click', submitGuess, false);
-
-
-
-
-
-
-
-
-
-
-
-
-
 
