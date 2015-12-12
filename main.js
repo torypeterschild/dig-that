@@ -10,7 +10,7 @@ var numProbes = 0;
 var probesList = [];
 var tunnel = new Tunnel();
 var finalTunnelGuess = [];
-var gameState = 0;
+var gameState = -1;
 	// 0 = badGuy placing tunnels
 	// 1 = detector placing 1st hour probes
 	// 2 = detector placing 2nd hour probes
@@ -29,11 +29,11 @@ $(function() {
 //	});
 //});
 
-$(function() {
-	$(".probeAnim").click(function() {
-		$(this).toggleClass("animate");
-	});
-});
+//$(function() {
+//	$(".probeAnim").click(function() {
+//		$(this).toggleClass("animate");
+//	});
+//});
 
 //$(function() {
 //	$(".vedgeAnim").click(function() {
@@ -269,8 +269,8 @@ var edges = document.getElementsByClassName("edge");
 var edgeClicked = function() {
 	var edgeId = this.id;
 	if (gameState == 0) {
+		$(this).toggleClass("animate");
 		if (edgeId in tunnel.edges) {
-			$(this).toggleClass("animate");
 			// get nodes
 			tunnelLength++;
 			var n1 = tunnel.edges[edgeId].n1;
@@ -286,7 +286,6 @@ var edgeClicked = function() {
 			}
 			tunnel.removeEdge(tunnel.edges[edgeId]);
 		} else {
-			$(this).toggleClass("animate");
 			// Check if there are no pieces
 			if (tunnelLength <= 0) {
 				remainingPieces.innerHTML = "There are no remaining edges! Please remove an edge to continue building.";
@@ -374,21 +373,24 @@ for(var i = 0; i < edges.length; i++){
 var probes = document.getElementsByClassName("probe");
 
 var probeClicked = function() {
-	probeId = this.id;
-	console.log("Probe id: ", probeId);
-	index = probesList.indexOf(probeId);
-	console.log("Numprobes: " + numProbes);
-	console.log("Index: " + index);
-	if (index < 0) {
-		probesList.push(probeId.slice(1));
-		numProbes++;
-	} else {
-		probesList.splice(index, 1);
-		numProbes--;
-	}
+	if (gameState == 1 || gameState == 2) {
+		$(this).toggleClass("animate");
+		probeId = this.id;
+		console.log("Probe id: ", probeId);
+		index = probesList.indexOf(probeId);
+		console.log("Numprobes: " + numProbes);
+		console.log("Index: " + index);
+		if (index < 0) {
+			probesList.push(probeId.slice(1));
+			numProbes++;
+		} else {
+			probesList.splice(index, 1);
+			numProbes--;
+		}
 
-	probeCount.innerHTML = "You have placed " + numProbes + " probe(s).";
-	this.style.background = this.style.background=='red'? 'blue':'red';
+		probeCount.innerHTML = "You have placed " + numProbes + " probe(s).";
+		this.style.background = this.style.background == 'red' ? 'blue' : 'red';
+	}
 };
 
 for(var i=0;i<probes.length;i++){
@@ -396,6 +398,7 @@ for(var i=0;i<probes.length;i++){
 }
 
 var startGame = function () {
+	gameState++;
 	document.getElementById('start').style.display = 'none';
 	document.getElementById('tunnelDone').style.display = 'block';
 	tunnelInfo.innerHTML = "Tunnel can be up to " + tunnelLength + " edges long.";
@@ -456,8 +459,30 @@ var doneAddingProbes = function () {
 };
 
 var submitGuess = function () {
-
-}
+	console.log("Final tunnel guess: ", finalTunnelGuess);
+	console.log("The actual tunnel: ", tunnel.edges);
+	console.log("Final tunnel guess LENGTH: ", finalTunnelGuess.length);
+	console.log("Tunnel length: ", Object.keys(tunnel.edges).length);
+	var clone = finalTunnelGuess.slice(0);
+	if (finalTunnelGuess.length != Object.keys(tunnel.edges).length) {
+		console.log("Tunnel length not the same");
+		alert("you are a horrible Detector. Keep your day job.");
+	} else {
+		console.log("Tunnel length is good");
+		for (var i = 0; i < finalTunnelGuess.length; i++) {
+			console.log("Final tunnel guess: iteration ",i, finalTunnelGuess);
+			if (finalTunnelGuess[i] in tunnel.edges) {
+				console.log("Found match: " + finalTunnelGuess[i]);
+				clone.splice(clone.indexOf(finalTunnelGuess[i]), 1);
+				console.log("Clone: " + clone)
+			}
+		}
+		console.log("clone length ", clone.length);
+		if (!clone.length) {
+			alert("good job");
+		}
+	}
+};
 
 // Add button event listeners
 document.getElementById('start').addEventListener('click', startGame, false);
