@@ -34,7 +34,7 @@
                 <li> The Detector selects what she believes is the location of the tunnel. When she is done she clicks on the "done detecting tunnel" button. </li>
 
             </ol>
-            If the Detector correctly detected the tunnel, her score is the max of the number of probes she used between the two rounds. If she incorrectly detected the tunnel then she gets a score of infinity. Now the two players reverse roles. The winner is the player with the lowest score. 
+            <p>If the Detector correctly detected the tunnel, her score is the max of the number of probes she used between the two rounds. If she incorrectly detected the tunnel then she gets a score of infinity. Now the two players reverse roles. The winner is the player with the lowest score. </p>
         </div>
     </div>
 
@@ -252,9 +252,7 @@
                 <div class="badguy"></div>
                 <div class="detector"></div>
             </div>
-            <div class="bird-cage"></div>
             <div id="lookaway" class="popup">
-                <img src="http://www.pd4pic.com/images/-hand-palm-fingers-spread-silhouette-stop-halt.png" style="height: 65px; width: 80px; float: left; margin: 15px">
                 <p>Detector, please look away while Badguy contructs a tunnel.</p>
             </div>
         </div>
