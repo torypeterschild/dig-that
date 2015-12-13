@@ -7,6 +7,7 @@
     width: 960px;
     margin-left:auto;
     margin-right:auto;
+    background-color: transparent;
 }
 
 div.popup {
@@ -41,7 +42,7 @@ div.popup {
     width: auto;
     margin-left: auto;
     margin-right: auto;
-    background-color: #ffffff;
+    background-color: #transparent;
 }
 
 .edgeWrapper {
@@ -50,7 +51,7 @@ div.popup {
     width: auto;
     margin-left: auto;
     margin-right: auto;
-    background-color: #ffffff;
+    background-color: #transparent;
 }
 
 .hedge0, .hedge1, .hedge2, .hedge3, .hedge4, .hedge5 {
@@ -58,7 +59,7 @@ div.popup {
     float: left;
     width: 70px;
     height: 10px;
-    background-color: #191919;
+    background-color: #ffffff;
     border-radius: 3px;
     -webkit-transition: width 2s ease, height 2s ease;
     -moz-transition: width 2s ease, height 2s ease;
@@ -86,7 +87,7 @@ div.popup {
     float: left;
     width: 70px;
     height: 70px;
-    background-color: #fff;
+    background-color: transparent;
     border-radius: 3px;
 }
 
@@ -96,7 +97,7 @@ div.popup {
     left: 0px;
     width: 10px;
     height: 70px;
-    background-color: #191919;
+    background-color: #ffffff;
     border-radius: 3px;
     -webkit-transition: width 2s ease, height 2s ease;
     -moz-transition: width 2s ease, height 2s ease;
@@ -109,7 +110,7 @@ body {
     border-width: 0px;
     padding: auto;
     font-size: 100%;
-    background-color: #ffffff;
+    background-color: #transparent;
 }
 
 #infoPanel {
@@ -141,7 +142,7 @@ p {
 }
 
 .left1:hover, .left2:hover, .left3:hover, .left4:hover, .left5:hover, .left6:hover {
-    background-color: yellow;
+    background-color: transparent;
 }
 
 .edge:hover {
