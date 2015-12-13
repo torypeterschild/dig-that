@@ -12,13 +12,53 @@
 }
 
 #last10 {
-    position: absolute;
+    float: left;
     margin-left: auto;
     margin-right: auto;
     margin-top: 15px;
     bottom: 0;
     clear: both;
 }
+
+.post {
+    margin-bottom: 25px;
+    padding: 0px 0px 0px 0px;
+    background: #5F965F;
+}
+
+.post .title {
+    height: 38px;
+    _height: 41px;
+    padding: 12px 30px 0px 30px;
+    _padding: 5px 30px 0px 30px;
+    letter-spacing: -.5px;
+    color: #FFFFFF;
+}
+
+.post .title a {
+    border: none;
+    color: #FFFFFF;
+}
+
+.post .meta {
+    padding-top: 20px;
+    padding-bottom: 5px;
+    text-align: left;
+    font-family: Century Gothic;
+    font-size: 11px;
+    font-style: italic;
+}
+
+.post .meta a {
+}
+
+.post .entry {
+    background: url(images/img02.jpg) no-repeat left top;
+    padding: 0px 30px 20px 30px;
+    padding-bottom: 20px;
+    text-align: justify;
+}
+
 
 .instr {
     font-family: "Helvetica", Helvetica, sans-serif;
