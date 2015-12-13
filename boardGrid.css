@@ -7,7 +7,23 @@
     width: 960px;
     margin-left:auto;
     margin-right:auto;
+    margin-bottom: 20px;
     background-color: transparent;
+}
+
+#last10 {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    bottom: 0;
+    clear: both;
+}
+
+.instr {
+    font-family: "Helvetica", Helvetica, sans-serif;
+    font-size: 10pt;
+    line-height: 1.0;
 }
 
 div.popup {
@@ -109,8 +125,7 @@ div.popup {
 body {
     border-width: 0px;
     padding: auto;
-    font-size: 100%;
-    background-color: #transparent;
+    background-color: transparent;
 }
 
 #infoPanel {
