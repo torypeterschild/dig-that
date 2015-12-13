@@ -15,23 +15,31 @@
     <h1 class="title">Dig That V2</h1>
 </div>
 <div >
-    <div class="instr">
-        <p>
-        <b>Instructions:</b> <br />
-        The gravity game is a two players game. One player (the Hider) puts two black holes in the gravitational field while the other
-        (the Seeker) can fire 5 shots with a missile and has to get the closest possible to the planet Earth.
-        </p>
-    </div>
-    <div class="instr">
-        <b>Rules of the game:</b>
-        <ul>
-            <li><span style="color:red"> Rule #1: </span>Blah blah .</li>
-            <li><span style="color:red"> Rule #2: </span>Blah blah .</li>
-        </ul>
-    </div>
-    <div>
-        <b>The object of the game is to ......</b>. The winner is the one who blah blah...
-    </div>
+
+<div class="instr">
+
+<b>Overview:</b> <br>
+
+<p>
+Dig that is a two-player game between a Badguy and a Detector. The Badguy builds an explosive tunnel under the city and it is the role of the Detector to detect the tunnel. The Badguy can be played by the computer. The game has four phases.
+</p> <br>
+
+<b>Phases:</b> <br>
+
+<ol>
+<li> The Detector looks away from the screen while the Badguy builds the tunnel. The tunnel needs to be a simple path with a start and end node on the top and bottom rows respectively. In order to construct the tunnel the bad guy needs to click on the edges he wants to be a part of his tunnel. When he is content with the tunnel he clicks on the "finish tunnel" button on the right of the screen and the tunnel will disappear. </li> 
+
+<li> Now the Detector can begin detecting by placing probes on any number of intersections. When the detector is done, click the "done with hour 1 button". If a given probe is on top of a part of the tunnel the probe will light up. Repeat this process one more time. </li>
+
+<li> The Detector selects what she believes is the location of the tunnel. When she is done she clicks on the "done detecting tunnel" button. </li>
+
+</ol>
+If the Detector correctly detected the tunnel, her score is the max of the number of probes she used between the two rounds. If she incorrectly detected the tunnel then she gets a score of infinity. Now the two players reverse roles. The winner is the player with the lowest score. 
+</div>
+
+
+
+
 </div>
 
 <div id="gameArea" >
@@ -274,7 +282,7 @@
 
 
 
-<div class="post" style="position:absolute; top:80%; height:10%">
+<div id="last10" class="post">
 <h2 class="title">Last 10 scores</h2>
 <?php
   // functions.php in case of an opening in the same window
