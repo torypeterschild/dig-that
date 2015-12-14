@@ -147,6 +147,7 @@ div.popup {
     height: 70px;
     background-color: transparent;
     border-radius: 3px;
+    z-index: 0;
 }
 
 .vedge {
