@@ -435,11 +435,12 @@ var doneAddingProbes = function () {
 					$("#" + tunnel.nodes[probesList[i]].edges[j].id).addClass("animate");
 				}
 			}
+			$("#p" + probesList[i]).toggleClass("animate");
 		}
 	}
 	// Iterate through probesList to turn off and delete
 	for (var i = 0; i < probesList.length; i++) {
-		$("#p" + probesList[i]).toggleClass("animate");
+		$("#p" + probesList[i]).addClass("detectedEdge");
 	}
 
 	if (gameState == 1) {

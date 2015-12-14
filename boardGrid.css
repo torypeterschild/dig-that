@@ -227,6 +227,10 @@ p {
     animation-fill-mode: forwards;
 }
 
+.probe.usedProbe {
+    background-color: #25ff72;
+}
+
 .hedge.animate {
     animation-name: edgeSelected;
     animation-duration: 1s;
@@ -831,7 +835,7 @@ p {
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #ffd630;
+        background: #e202ff;
         border-radius: 50%;
     }
 }
@@ -861,7 +865,7 @@ p {
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #ffd630;
+        background: #e202ff;
         border-radius: 50%;
     }
 }
@@ -891,7 +895,7 @@ p {
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #ffd630;
+        background: #e202ff;
         border-radius: 50%;
     }
 }
@@ -921,7 +925,7 @@ p {
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #ffd630;
+        background: #e202ff;
         border-radius: 50%;
     }
 }
@@ -951,7 +955,7 @@ p {
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #ffd630;
+        background: #e202ff;
         border-radius: 50%;
     }
 }
