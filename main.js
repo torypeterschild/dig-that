@@ -414,7 +414,7 @@ var doneAddingTunnels = function () {
 	tunnelInfo.innerHTML = "";
 	remainingPieces.innerHTML = "";
 	currentTunnel.innerHTML = "";
-	message.innerHTML = "Done adding tunnels. Time for Detector to place probes.";
+	message.innerHTML = "Done adding tunnels. Time for Detector to place first round of probes.";
 	for (var e in tunnel.edges) {
 		console.log("TRYING TO UNHIGHLIGHT");
 		console.log("tunnel.edges[e].id is ", tunnel.edges[e].id);
@@ -444,14 +444,14 @@ var doneAddingProbes = function () {
 
 	if (gameState == 1) {
 		probesList = [];
-		message.innerHTML = "Second round of probes.";
+		message.innerHTML = "Detector, please place the second round of probes..";
 		document.getElementById('probesPlaced1').style.display = 'none';
 		document.getElementById('probesPlaced2').style.display = 'block';
 		gameState++;
 	} else if (gameState == 2) {
 		document.getElementById('probesPlaced2').style.display = 'none';
 		document.getElementById('submitGuess').style.display = 'block';
-		message.innerHTML = "Detector, select edges to complete the tunnel!";
+		message.innerHTML = "Now, select all edges in the tunnel to submit your final guess.";
 		gameState++;
 	}
 
