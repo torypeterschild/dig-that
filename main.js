@@ -123,7 +123,7 @@ function Tunnel() {
 			}
 
 			node = this.nodes[nodeId];
-			if (Number(node.id) > (boardSize * (boardSize + 1))) {
+			if (Number(node.id) >= (boardSize * (boardSize + 1))) {
 				ends.push(node);
 			}
 		}
