@@ -82,7 +82,7 @@ div.popup {
     left:20%;
     top:50%;
     margin:-40px 0 0 -120px;
-    background-color: orange;
+    background-color: #ff414b;
     -moz-box-shadow: 10px 10px 5px #888888;
     -webkit-box-shadow: 10px 10px 5px #888888;
     -o-box-shadow: 10px 10px 5px #888888;
@@ -116,7 +116,8 @@ div.popup {
     float: left;
     width: 70px;
     height: 10px;
-    background-color: #ffffff;
+    background-color: #b0daff;
+    /*TODO: change back to white for final version*/
     border-radius: 3px;
     -webkit-transition: width 2s ease, height 2s ease;
     -moz-transition: width 2s ease, height 2s ease;
@@ -154,7 +155,8 @@ div.popup {
     left: 0px;
     width: 10px;
     height: 70px;
-    background-color: #ffffff;
+    background-color: #b0daff;
+    /*TODO: change back to white for final version */
     border-radius: 3px;
     -webkit-transition: width 2s ease, height 2s ease;
     -moz-transition: width 2s ease, height 2s ease;

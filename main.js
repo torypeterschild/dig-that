@@ -10,6 +10,9 @@ var numProbes = 0;
 var probesList = [];
 var tunnel = new Tunnel();
 var finalTunnelGuess = [];
+var gameMode = -1;
+	// 0 = Regular
+	// 1 = Easy Mode
 var gameState = -1;
 	// 0 = badGuy placing tunnels
 	// 1 = detector placing 1st hour probes
@@ -18,6 +21,13 @@ var gameState = -1;
 
 $(function() {
 	$("#start").click(function(){
+		$("#lookaway").show();
+		$("#lookaway").delay(1000).fadeOut();
+	});
+});
+
+$(function() {
+	$("#startEasy").click(function(){
 		$("#lookaway").show();
 		$("#lookaway").delay(1000).fadeOut();
 	});
@@ -68,7 +78,7 @@ function Tunnel() {
 	};
 
 	this.getStartNode = function() {
-		//get all nodes that are touching the top row
+		// Get all nodes that are touching the top row
 		var starts = [];
 		for (var nodeId in this.nodes) {
 			if (!this.nodes.hasOwnProperty(nodeId)) {
@@ -82,7 +92,7 @@ function Tunnel() {
 			}
 		}
 
-		//out of all nodes on top row, get all that have just one edge
+		// Out of all nodes on top row, get all that have just one edge
 		var validStarts = [];
 		for (var i = 0; i < starts.length; i++) {
 			if (starts[i].edges.length == 1) {
@@ -91,8 +101,8 @@ function Tunnel() {
 			}
 		}
 
-		//if there is just one such node, it's our start
-		//else there isn't a valid start node and tunnel is invalid
+		// If there is just one such node, it's our start
+		// Else there isn't a valid start node and tunnel is invalid
 		console.log("length of validStarts: ", validStarts.length);
 		if (validStarts.length == 1) {
 			console.log("validStarts[0] is ", validStarts[0]);
@@ -104,11 +114,11 @@ function Tunnel() {
 	};
 
 	this.getEndNode = function() {
-		//get all nodes that are touching the bottom row
+		// Get all nodes that are touching the bottom row
 		var ends = [];
 		for (var nodeId in this.nodes) {
 			if (!this.nodes.hasOwnProperty(nodeId)) {
-				//not direct property of nodes
+				// Not direct property of nodes
 				continue;
 			}
 
@@ -118,7 +128,7 @@ function Tunnel() {
 			}
 		}
 
-		//out of all nodes on top row, get all that have just one edge
+		// Out of all nodes on top row, get all that have just one edge
 		var validEnds = [];
 		for (var i = 0; i < ends.length; i++) {
 			if (ends[i].edges.length == 1) {
@@ -126,8 +136,8 @@ function Tunnel() {
 			}
 		}
 
-		//if there is just one such node, it's our start
-		//else there isn't a valid start node and tunnel is invalid
+		// If there is just one such node, it's our start
+		// Else there isn't a valid start node and tunnel is invalid
 		if (validEnds.length == 1) {
 			return validEnds[0];
 		}
@@ -235,17 +245,7 @@ function Tunnel() {
 	}
 }
 
-// Get edges and add event listener to each one
-// TODO (Tory): make event listener do the following:
-// if trying to add tunnel, make sure they still have tunnels to add
-// if they don't, generate pop up that will tell them they either need
-// to finish or remove a tunnel piece to add another ones
-
-// change color -- if was already clicked, change to unclicked color
-// if not clicked change to clicked color
-// (should probably use jquery and toggle)
-
-//determine if was clicked before or not and add/remove edge from tunnel class
+// Eetermine if was clicked before or not and add/remove edge from tunnel class
 var edges = document.getElementsByClassName("edge");
 
 var edgeClicked = function() {
@@ -379,14 +379,23 @@ for(var i=0;i<probes.length;i++){
 	probes[i].addEventListener('click', probeClicked, false);
 }
 
+var startGameInRegularMode = function () {
+	gameMode = 0;
+	startGame();
+}
+
+var startGameInEasyMode = function () {
+	gameMode = 1;
+	startGame();
+}
+
 var startGame = function () {
 	gameState++;
 	document.getElementById('start').style.display = 'none';
+	document.getElementById('startEasy').style.display = 'none';
 	document.getElementById('tunnelDone').style.display = 'block';
 	tunnelInfo.innerHTML = "Tunnel can be up to " + tunnelLength + " edges long.";
 	remainingPieces.innerHTML = "Edges left: " + tunnelLength;
-	//message.innerHTML = "Detector, please look away while Badguy builds a tunnel.";
-	//alert("Detector, please look away while Badguy builds a tunnel.");
 };
 
 //TODO: need to actually stop them if they built a bad tunnel
@@ -422,7 +431,9 @@ var doneAddingProbes = function () {
 			console.log("we got in the if statement");
 			for (var j = 0; j < tunnel.nodes[probesList[i]].edges.length; j++) {
 				console.log("Found edge ", tunnel.nodes[probesList[i]].edges[j].id);
-				$("#" + tunnel.nodes[probesList[i]].edges[j].id).addClass("animate");
+				if (gameMode == 1) {
+					$("#" + tunnel.nodes[probesList[i]].edges[j].id).addClass("animate");
+				}
 			}
 		}
 	}
@@ -475,7 +486,12 @@ var submitGuess = function () {
 };
 
 // Add button event listeners
-document.getElementById('start').addEventListener('click', startGame, false);
+
+// Start game in normal mode
+document.getElementById('start').addEventListener('click', startGameInRegularMode, false);
+
+// Start game in easy mode
+document.getElementById('startEasy').addEventListener('click', startGameInEasyMode, false);
 
 document.getElementById('tunnelDone').addEventListener('click', doneAddingTunnels, false);
 
