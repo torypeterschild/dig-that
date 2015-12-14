@@ -9,7 +9,7 @@
     /*-ms-transform: translateX(-30px) translateY(15px) scale(0.95) rotate(0deg);*/
     /*-webkit-transform: translateX(-30px) translateY(15px) scale(0.95) rotate(0deg);*/
     /*transform: translateX(-30px) translateY(15px) scale(0.75) rotate(0deg);*/
-    background: url(/images/oie_transparent-inverted.png);
+/*    background: url(/images/oie_transparent-inverted.png);*/
     background-position: 0;
     background-repeat: no-repeat;
     background-size: 256px 256px; }
@@ -53,7 +53,7 @@
     /*-ms-transform: translateX(-60px) translateY(15px) scale(0.75) rotate(0deg);*/
     /*-webkit-transform: translateX(-60px) translateY(15px) scale(0.75) rotate(0deg);*/
     /*transform: translateX(-60px) translateY(15px) scale(0.75) rotate(0deg);*/
-    background: url(detector_inverted.jpg);
+/*    background: url(detector_inverted.jpg);*/
     background-position: 0;
     background-repeat: no-repeat;
     background-size: 259px 400px; }
