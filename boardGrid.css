@@ -137,7 +137,7 @@ div.popup {
     -moz-transition: width 2s ease, height 2s ease;
     -o-transition: width 2s ease, height 2s ease;
     transition: width 2s ease, height 2s ease;
-    z-index: 30;
+    z-index: 0;
 }
 
 .left1, .left2, .left3, .left4, .left5, .left6 {

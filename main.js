@@ -13,6 +13,9 @@ var finalTunnelGuess = [];
 var gameMode = -1;
 	// 0 = Regular
 	// 1 = Easy Mode
+var computer = -1;
+	// 0 = Humans
+	// 1 = AI	
 var gameState = -1;
 	// 0 = badGuy placing tunnels
 	// 1 = detector placing 1st hour probes
@@ -363,7 +366,7 @@ var edgeClicked = function() {
 			}
 		}
 
-		//this.style.background = this.style.background=='yellow'? '#63f9ff':'yellow';
+		// this.style.background = this.style.background=='yellow'? '#63f9ff':'yellow';
 		remainingPieces.innerHTML = "Edges left: " + tunnelLength;
 		currentTunnel.innerHTML = "You picked edge " + this.id;
 		console.log(tunnel.edges);
@@ -420,16 +423,41 @@ var startGameInEasyMode = function () {
 	startGame();
 }
 
+var startGameAI = function () {
+	computer = 1;
+	gameMode = 0;
+	gameState = 0;
+	console.log("GAME STATE IN START AI ", gameState);
+	tunnel = createAITunnel();
+	startGame();
+}
+
+var startGameEasyAI = function () {
+	computer = 1;
+	gameMode = 1;
+	gameState = 0;
+	tunnel = createAITunnel();
+	startGame();
+}
+
 var startGame = function () {
 	gameState++;
+	console.log("GAME STATE IS ", gameState);
 	document.getElementById('start').style.display = 'none';
 	document.getElementById('startEasy').style.display = 'none';
-	document.getElementById('tunnelDone').style.display = 'block';
-	tunnelInfo.innerHTML = "Tunnel can be up to " + tunnelLength + " edges long.";
-	remainingPieces.innerHTML = "Edges left: " + tunnelLength;
+	document.getElementById('startAI').style.display = 'none';
+	document.getElementById('startEasyAI').style.display = 'none';
+	if (gameState == 0) {
+		tunnelInfo.innerHTML = "Tunnel can be up to " + tunnelLength + " edges long.";
+		remainingPieces.innerHTML = "Edges left: " + tunnelLength;
+		document.getElementById('tunnelDone').style.display = 'block';
+	} else if (gameState == 1) {
+		message.innerHTML = "Computer opponent has constructed a tunnel. Detector, begin placing probes.";
+		document.getElementById('probesPlaced1').style.display = 'block';
+	}
 };
 
-//TODO: need to actually stop them if they built a bad tunnel
+// TODO: need to actually stop them if they built a bad tunnel
 var doneAddingTunnels = function () {
 	var valid = tunnel.validTunnel();
 	console.log(valid);
@@ -880,6 +908,12 @@ document.getElementById('start').addEventListener('click', startGameInRegularMod
 
 // Start game in easy mode
 document.getElementById('startEasy').addEventListener('click', startGameInEasyMode, false);
+
+// Start game with AI
+document.getElementById('startAI').addEventListener('click', startGameAI, false);
+
+// Start game with AI in easy mode
+document.getElementById('startEasyAI').addEventListener('click', startGameEasyAI, false);
 
 document.getElementById('tunnelDone').addEventListener('click', doneAddingTunnels, false);
 
