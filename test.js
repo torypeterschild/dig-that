@@ -274,6 +274,7 @@ function createAITunnel() {
 		if (Math.floor(currNode.id / (boardSize+1)) == boardSize) {
 			console.log("on end!")
 			console.log("final tunnel: " + aiTunnel);
+			aiTunnel.addNode(currNode);
 			break;
 		}
 
@@ -319,6 +320,15 @@ function createAITunnel() {
 
 		console.log("tunnel: " + aiTunnel);
 
+	}
+	console.log("final final tunnel:");
+	console.log("nodes");
+	for (var n in aiTunnel.nodes) {
+		console.log(aiTunnel.nodes[n] + "");
+	}
+	console.log("edges: ");
+	for (var e in aiTunnel.edges) {
+		console.log(aiTunnel.edges[e] + "");
 	}
 
 	return aiTunnel;

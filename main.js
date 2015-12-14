@@ -47,11 +47,27 @@ function Node(id) {
 	}
 }
 
+Node.prototype.toString = function nodeToString() {
+	var ret = this.id + ": ";
+	for (var i = 0; i < this.edges.length; i++) {
+		ret += (this.edges[i].id + " ");
+	}
+	return ret;
+}
+
 function Edge(n1, n2, id) {
 	this.n1 = n1;
 	this.n2 = n2;
 	this.id = id;
 	this.allNodes = [];
+}
+
+Edge.prototype.toString = function edgeToString() {
+	var ret = this.id + ": ";
+	for (var i = 0; i < this.allNodes.length; i++) {
+		ret += (this.allNodes[i].id + " ");
+	}
+	return ret;
 }
 
 function Tunnel() {
@@ -246,6 +262,20 @@ function Tunnel() {
 	}
 }
 
+Tunnel.prototype.toString = function tunnelToString() {
+	var ret = "tunnel: \n";
+	ret += "nodes: ";
+	for (var n in this.nodes) {
+		ret += (this.nodes[n].id + " ");
+	}
+	ret += "\nedges: ";
+	for (var e in this.edges) {
+		ret += (this.edges[e].id + " ");
+	}
+	ret += "\n";
+	return ret;
+}
+
 // Eetermine if was clicked before or not and add/remove edge from tunnel class
 var edges = document.getElementsByClassName("edge");
 
@@ -421,6 +451,20 @@ var doneAddingTunnels = function () {
 		console.log("tunnel.edges[e].id is ", tunnel.edges[e].id);
 		$("#" + tunnel.edges[e].id).toggleClass("animate");
 	}
+
+	tunnelLength = 12;
+	tunnel = createAITunnel();
+
+	console.log("final final tunnel:");
+	console.log("nodes");
+	for (var n in tunnel.nodes) {
+		console.log(tunnel.nodes[n] + "");
+	}
+	console.log("edges: ");
+	for (var e in tunnel.edges) {
+		console.log(tunnel.edges[e] + "");
+	}
+
 	gameState++;
 };
 
@@ -508,6 +552,7 @@ function createAITunnel() {
 		if (Math.floor(currNode.id / (boardSize+1)) == boardSize) {
 			console.log("on end!")
 			console.log("final tunnel: " + aiTunnel);
+			aiTunnel.addNode(currNode);
 			break;
 		}
 
