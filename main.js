@@ -51,6 +51,7 @@ function Edge(n1, n2, id) {
 	this.n1 = n1;
 	this.n2 = n2;
 	this.id = id;
+	this.allNodes = [];
 }
 
 function Tunnel() {
@@ -485,6 +486,347 @@ var submitGuess = function () {
 		}
 	}
 };
+
+
+// AI tunnel stuff
+function createAITunnel() {
+	var aiTunnel = new Tunnel();
+	var graph = new Graph();
+	graph.createGraph();
+	var currentTunnelLength = 0;
+
+	var start = Math.floor(Math.random() * (boardSize+1));
+	var currNodeFromGraph = graph.nodes[start];
+	var currNode = new Node(start);
+
+	var counter = 0;
+
+	while(true) {
+		console.log("curr node: " + currNode);
+
+		//check if on end and if yes break
+		if (Math.floor(currNode.id / (boardSize+1)) == boardSize) {
+			console.log("on end!")
+			console.log("final tunnel: " + aiTunnel);
+			break;
+		}
+
+		//pick an edge from the current nodes edges that's not the incoming edge
+		var potentialEdge = getRandomEdge(currNodeFromGraph, aiTunnel);
+		console.log("first potential edge: " + potentialEdge);
+		
+		//see if adding that edge leaves enough pipes to get to the end
+		while (!potentialEdgeValid(potentialEdge, currNode, aiTunnel)) {
+		//while(false) {
+			potentialEdge = getRandomEdge(currNodeFromGraph, aiTunnel);
+			console.log("edge was invalid, got new one: " + potentialEdge);
+			//sleepFor(1000);
+		}
+
+		//now we have a good edge, update it's n1
+		potentialEdge.n1 = currNode;
+
+		//add the edge to currNode
+		currNode.addEdge(potentialEdge);
+
+		//add them both to the tunnel
+		aiTunnel.addNode(currNode);
+		aiTunnel.addEdge(potentialEdge);
+
+		//get the next node
+		var currNodeId = currNode.id;
+		var newNodeId = null;
+		//console.log("curr node id: " + currNodeId);
+		for (var i = 0; i < potentialEdge.allNodes.length; i++) {
+			//console.log("potentialEdge.allNodes[i].id: " + potentialEdge.allNodes[i].id );
+			if (potentialEdge.allNodes[i].id != currNodeId) {
+				newNodeId = potentialEdge.allNodes[i].id;
+			}
+		}
+		//console.log("new node id: " + newNodeId);
+
+		currNodeFromGraph = graph.nodes[newNodeId];
+		currNode = new Node(newNodeId);
+		currNode.addEdge(potentialEdge);
+		potentialEdge.n2 = currNode;
+		counter++;
+
+		console.log("tunnel: " + aiTunnel);
+
+	}
+
+	return aiTunnel;
+}
+
+function potentialEdgeValid(potentialEdge, currNode, tunnel) {
+
+	if(potentialEdge.id in tunnel.edges) {
+		console.log("edge exists, not valid");
+		return false;
+	}
+
+	tunnel.addEdge(potentialEdge);
+	tunnel.addNode(currNode);
+
+	var tunnelLengthSoFar = Object.keys(tunnel.edges).length;
+	var edgesLeft = tunnelLength - tunnelLengthSoFar;
+	var rowNum = getRowNum(potentialEdge);
+
+
+	console.log();
+	console.log("======= starting validation ========")
+	console.log("checking if edge " + potentialEdge.id + " is valid to add to tunnel: ");
+	console.log(tunnel + "");
+	console.log("tunnel len so far: " + tunnelLengthSoFar);
+	console.log("edges left so far: " + edgesLeft);
+	console.log("row num of edge: " + rowNum);
+
+	//check that the other end of the new edge isn't already in the tunnel
+		//(this means we created a loop)
+	var currNodeId = currNode.id;
+	var newNodeId = null;
+	console.log("curr node id: " + currNodeId);
+	for (var i = 0; i < potentialEdge.allNodes.length; i++) {
+		//console.log("potentialEdge.allNodes[i].id: " + potentialEdge.allNodes[i].id );
+		if (potentialEdge.allNodes[i].id != currNodeId) {
+			newNodeId = potentialEdge.allNodes[i].id;
+		}
+	}
+	console.log("new node id: " + newNodeId);
+
+	if (newNodeId in tunnel.nodes) {
+		console.log("we created a loop, not valid");
+		tunnel.removeEdge(potentialEdge);
+		tunnel.removeNode(currNode);
+		return false;
+	}
+
+
+	//if the edge is horizontal then need (remaining pieces - (boardSize - rowNum)) >= 0
+	//check if have enough nodes to end
+	var neededToEnd = -1;
+	if (potentialEdge.id[0] == "h") {
+		console.log("edge is horiz");
+		//check if h edge below is already in tunnel
+		var edgeBelowId = Number(potentialEdge.id.slice(1)) + boardSize;
+		var edgeBelow = "h" + edgeBelowId;
+		if (edgeBelow in tunnel.edges) {
+			console.log("can't add this horiz edge because will cause box");
+			tunnel.removeEdge(potentialEdge);
+			tunnel.removeNode(currNode);
+			return false;
+		}
+		neededToEnd = boardSize - rowNum;
+	} else {
+		if (newNodeId > currNodeId) { //edge is going down
+			console.log("edge is v going down")
+			neededToEnd = (boardSize - rowNum) - 1;
+		} else {
+			console.log("edge is v going up");
+			//console.log("so for now returning false");
+			//return false;
+			//can't go up on the edges
+			var potEdgeIdNum = Number(potentialEdge.id.slice(1));
+			if(potEdgeIdNum % (boardSize + 1) == 0 || potEdgeIdNum % (boardSize + 1) == boardSize) {
+				console.log("can't go up on an outside edge");
+				tunnel.removeEdge(potentialEdge);
+				tunnel.removeNode(currNode);
+				return false;
+			}
+
+			neededToEnd = (boardSize - rowNum) + 1;
+		}
+	}	
+	console.log("needed to end: " + neededToEnd);
+	console.log("======== done with check =========");
+	console.log();
+	tunnel.removeEdge(potentialEdge);
+	tunnel.removeNode(currNode);
+	return ((edgesLeft - neededToEnd) >= 0);
+
+
+	//if edge is vertical 
+		//if edge is downward need (remaining pieces - (boardSize - rownum) - 1) >= 0
+		//else if upward need (remaining pieces - (boardSize - rownum) + 1) >= 0
+}
+
+function getRowNum(edge) {
+	var edgeId = Number(edge.id.slice(1));
+	if(edge.id[0] == "h") {
+		return Math.floor(edgeId / (boardSize));
+	} else {
+		return Math.floor(edgeId / (boardSize + 1));
+	}
+}
+
+function getRandomEdge(node, tunnel) {
+	//given the tunnel and the current node
+	var nodeId = node.id;
+	
+	var existingEdgeId;
+	if (nodeId in tunnel.nodes) {
+		var nodeFromTunnel = tunnel.nodes[nodeId];
+		existingEdgeId = nodeFromTunnel.edges[0];
+	} else {
+		existingEdgeId = "bad"
+	}
+	
+	var potentialEdges = [];
+
+	for (var i = 0; i < node.edges.length; i++) {
+		if (node.edges[i].id != existingEdgeId) {
+			potentialEdges.push(node.edges[i]);
+		}
+	}
+
+	console.log("list of potential edge candidates for node " + nodeId);
+	for(var i = 0; i < potentialEdges.length; i++) {
+		console.log(potentialEdges[i].id);
+	}
+
+	var rand = potentialEdges[Math.floor(Math.random() * potentialEdges.length)];
+	return rand;
+}
+
+function Graph() {
+	this.nodes = {};
+	this.edges = {};
+	this.nodeIds = [];
+	this.edgeIds = [];
+
+	this.createGraph = function() {
+		for(var i = 0; i < ((boardSize+1)*(boardSize+1)); i++) {
+			var node = new Node(i);
+			this.nodes[i] = node;
+			this.nodeIds.push(i);
+			var horizontalEdgeIds = getHorizontalEdgesIds(i);
+			var verticalEdgeIds = getVerticalEdgesIds(i);
+
+			for(var j = 0; j < horizontalEdgeIds.length; j++) {
+				var edgeId = horizontalEdgeIds[j];
+				if (edgeId in this.edges) {
+					//add the node to the edge
+					this.edges[edgeId].allNodes.push(node);
+					node.addEdge(this.edges[edgeId]);
+				} else {
+					//create new edge and add it to edge object
+					var edge = new Edge(null, null, edgeId);
+					edge.allNodes.push(node);
+					this.edges[edgeId] = edge;
+					this.edgeIds.push(edgeId);
+					node.addEdge(edge);
+				}
+			}
+
+			for (var j = 0; j < verticalEdgeIds.length; j++) {
+				var edgeId = verticalEdgeIds[j];
+				if (edgeId in this.edges) {
+					//add the node to it
+					this.edges[edgeId].allNodes.push(node);
+					node.addEdge(this.edges[edgeId]);
+				} else {
+					//create new edge
+					var edge = new Edge(null, null, edgeId);
+					edge.allNodes.push(node);
+					this.edges[edgeId] = edge;
+					this.edgeIds.push(edgeId);
+					node.addEdge(this.edges[edgeId]);
+				}
+			}
+		}
+		console.log("nodes");
+		for (var n in this.nodes) {
+			console.log("" + this.nodes[n]);
+		}
+		console.log("edges");
+		for (var e in this.edges) {
+			console.log("" + this.edges[e]);
+		}
+	}
+}
+
+function getHorizontalEdgesIds(i) {
+	var horizontalEdgeIds = [];
+
+	// console.log("getting horizontal edges for node " + i);
+
+	//create left and right edges
+	var rowNum = Math.floor(i / (boardSize + 1));
+	var leftEdge = i - (rowNum + 1);
+	var rightEdge = i - rowNum;
+	var leftEdgeId = "h" + leftEdge;
+	var rightEdgeId = "h" + rightEdge;
+
+	// console.log("row num: " + rowNum);
+	// console.log("left edge: " + leftEdge);
+	// console.log("right edge: " + rightEdge);
+
+	//if on left border, only has right edge
+	if (i % (boardSize + 1) == 0) {
+		// console.log("on left border");
+		leftEdgeId = null;
+	}
+
+	//if on right border only has left edge
+	if (i % (boardSize + 1) == 6) {
+		// console.log("on right border");
+		rightEdgeId = null;
+	}
+
+	//add non null edges
+	if (leftEdgeId != null) {
+		horizontalEdgeIds.push(leftEdgeId);
+	}
+
+	if (rightEdgeId != null) {
+		horizontalEdgeIds.push(rightEdgeId);
+	}
+
+	// console.log("final result: " , horizontalEdgeIds);
+	return horizontalEdgeIds;
+}	
+
+function getVerticalEdgesIds(i) {
+	var verticalEdgeIds = [];
+	// console.log("getting vertical edges for node " + i);
+	
+	//if on the first row only has a down edge
+	if (i <= boardSize) {
+		// console.log("on first row");
+		var edgeId = "v" + i;
+		verticalEdgeIds.push(edgeId);
+		return verticalEdgeIds;
+	}
+
+	//if on the bottom row only has an up edge
+	if (i >= (boardSize * (boardSize + 1))) {
+		// console.log("on bottom row");
+		var upEdgeIdNum = i - (boardSize + 1);
+		var upEdgeId = "v" + upEdgeIdNum;
+		verticalEdgeIds.push(upEdgeId);
+		return verticalEdgeIds;
+	}
+
+	//else has both edges
+	var downEdgeId = "v" + i;
+	var upEdgeIdNum = i - (boardSize + 1);
+	var upEdgeId = "v" + upEdgeIdNum;
+	verticalEdgeIds.push(downEdgeId);
+	verticalEdgeIds.push(upEdgeId);
+	// console.log("final result: ", verticalEdgeIds);
+	return verticalEdgeIds;
+}
+
+function edgeIsHorizontal(edge) {
+	var edgeId = edge.id;
+	var dir = edgeId.slice(0,1);
+	if (dir == "h") {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 
 // Add button event listeners
 

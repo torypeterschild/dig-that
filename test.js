@@ -414,7 +414,6 @@ function potentialEdgeValid(potentialEdge, currNode, tunnel) {
 	//if edge is vertical 
 		//if edge is downward need (remaining pieces - (boardSize - rownum) - 1) >= 0
 		//else if upward need (remaining pieces - (boardSize - rownum) + 1) >= 0
-
 }
 
 function getRowNum(edge) {
@@ -453,7 +452,6 @@ function getRandomEdge(node, tunnel) {
 
 	var rand = potentialEdges[Math.floor(Math.random() * potentialEdges.length)];
 	return rand;
-
 }
 
 function Graph() {
@@ -585,6 +583,22 @@ function getVerticalEdgesIds(i) {
 	return verticalEdgeIds;
 }
 
+function edgeIsHorizontal(edge) {
+	var edgeId = edge.id;
+	var dir = edgeId.slice(0,1);
+	if (dir == "h") {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
+
+
+
+
+
 function edgeIsHorizontal2(edge) {
 	if (edge.n1.id < edge.n2.id) {
 		if((edge.n1.id + 1) == edge.n2.id) {
@@ -596,16 +610,6 @@ function edgeIsHorizontal2(edge) {
 		}
 	}
 	return false;
-}
-
-function edgeIsHorizontal(edge) {
-	var edgeId = edge.id;
-	var dir = edgeId.slice(0,1);
-	if (dir == "h") {
-		return true;
-	} else {
-		return false;
-	}
 }
 
 
