@@ -11,6 +11,11 @@ var probesList = [];
 var tunnel = new Tunnel();
 var finalTunnelGuess = [];
 var gameMode = -1;
+var player1Name = "";
+var player2Name = "";
+var player1Score = -1;
+var player2Score = -1;
+var round = 1;
 	// 0 = Regular
 	// 1 = Easy Mode
 var gameState = -1;
@@ -493,6 +498,9 @@ var doneAddingProbes = function () {
 		message.innerHTML = "Detector, please place the second round of probes..";
 		document.getElementById('probesPlaced1').style.display = 'none';
 		document.getElementById('probesPlaced2').style.display = 'block';
+
+
+
 		gameState++;
 	} else if (gameState == 2) {
 		document.getElementById('probesPlaced2').style.display = 'none';
@@ -502,7 +510,6 @@ var doneAddingProbes = function () {
 	}
 
 	console.log("probes list after done ", probesList);
-
 };
 
 var submitGuess = function () {
