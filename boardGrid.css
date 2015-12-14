@@ -137,7 +137,7 @@ div.popup {
     -moz-transition: width 2s ease, height 2s ease;
     -o-transition: width 2s ease, height 2s ease;
     transition: width 2s ease, height 2s ease;
-    z-index: 0;
+    z-index: 30;
 }
 
 .left1, .left2, .left3, .left4, .left5, .left6 {
@@ -147,6 +147,7 @@ div.popup {
     height: 70px;
     background-color: transparent;
     border-radius: 3px;
+    z-index: 0;
 }
 
 .vedge {
