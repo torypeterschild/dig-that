@@ -51,6 +51,9 @@ var clearBoard = function () {
 	$(".final").filter(function() {
     $(this).removeClass("final");
 	});
+	$(".detectedEdge").filter(function() {
+    $(this).removeClass("detectedEdge");
+	});
 }
 
 function Node(id) {
@@ -419,8 +422,7 @@ var probeClicked = function() {
 			probesList.splice(index, 1);
 			numProbes--;
 		}
-
-		this.style.background = this.style.background == 'red' ? 'blue' : 'red';
+		// this.style.background = this.style.background == 'red' ? 'blue' : 'red';
 	}
 };
 
@@ -531,13 +533,14 @@ var doneAddingProbes = function () {
 					$("#" + tunnel.nodes[probesList[i]].edges[j].id).addClass("animate");
 				}
 			}
-			$("#p" + probesList[i]).toggleClass("animate");
+			$("#p" + probesList[i]).removeClass("animate");
+			$("#p" + probesList[i]).addClass("detectedEdge");
 		}
 	}
 	// Iterate through probesList to turn off and delete
-	for (var i = 0; i < probesList.length; i++) {
-		$("#p" + probesList[i]).addClass("detectedEdge");
-	}
+	// for (var i = 0; i < probesList.length; i++) {
+	// 	$("#p" + probesList[i]).addClass("detectedEdge");
+	// }
 
 	if (gameState == 1) {
 		//update score

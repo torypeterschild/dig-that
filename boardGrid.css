@@ -228,8 +228,8 @@ p {
     animation-fill-mode: forwards;
 }
 
-.probe.usedProbe {
-    background-color: #25ff72;
+.probe.detectedEdge {
+    background-color: #25ff72 !important;
 }
 
 .hedge.animate {
