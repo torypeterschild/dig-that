@@ -59,6 +59,15 @@
     text-align: justify;
 }
 
+.post table {
+    width: 100%;
+    border-collapse: collapse !important;
+}
+
+.post td, th {
+    padding: 5px;
+    border-collapse: collapse !important;
+}
 
 .instr {
     font-family: "Helvetica", Helvetica, sans-serif;
