@@ -23,7 +23,7 @@
 .post {
     margin-bottom: 25px;
     padding: 0px 0px 0px 0px;
-    background: #5F965F;
+    background: #f5f8fa;
 }
 
 .post .title {
@@ -32,12 +32,12 @@
     padding: 12px 30px 0px 30px;
     _padding: 5px 30px 0px 30px;
     letter-spacing: -.5px;
-    color: #FFFFFF;
+    color: #191919;
 }
 
 .post .title a {
     border: none;
-    color: #FFFFFF;
+    color: #191919;
 }
 
 .post .meta {
