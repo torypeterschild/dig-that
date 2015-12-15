@@ -376,7 +376,7 @@ var edgeClicked = function() {
 
 		// this.style.background = this.style.background=='yellow'? '#63f9ff':'yellow';
 		remainingPieces.innerHTML = "Edges left: " + tunnelLength;
-		currentTunnel.innerHTML = "You picked edge " + this.id;
+		// currentTunnel.innerHTML = "You picked edge " + this.id;
 		console.log(tunnel.edges);
 		console.log("Tunnel nodes: ", tunnel.nodes);
 	} else if (gameState == 3) {
@@ -412,7 +412,7 @@ var probeClicked = function() {
 			numProbes--;
 		}
 
-		probeCount.innerHTML = "You have placed " + numProbes + " probe(s).";
+		// probeCount.innerHTML = "You have placed " + numProbes + " probe(s).";
 		this.style.background = this.style.background == 'red' ? 'blue' : 'red';
 	}
 };
@@ -550,16 +550,16 @@ var doneAddingProbes = function () {
 		console.log("player 2 score: " + player2Score);
 
 		probesList = [];
-		message.innerHTML = "Detector, please place the second round of probes..";
+		message.innerHTML = "Detector, please place the second round of probes.";
 		document.getElementById('probesPlaced1').style.display = 'none';
 		document.getElementById('probesPlaced2').style.display = 'block';
 
 		gameState++;
 
 	} else if (gameState == 2) {
-		//update score
+		// Update score
 		if (computer == 1) {
-			//only need to update player1 score
+			// Only need to update player1 score
 			player1Score = Math.max(player1Score, probesList.length);
 		} else {
 			if (round == 1) {
@@ -592,10 +592,10 @@ var submitGuess = function () {
 		console.log("Tunnel length not the same");
 		if (round == 1) {
 			player1Score = 10000;
-			alert("you are a horrible Detector. Keep your day job. Your score is infinity");
+			alert("You are a horrible Detector. Keep your day job. Your score is infinity.");
 		} else {
 			player2Score = 10000;
-			alert("you are a horrible Detector. Keep your day job. Your score is infinity");
+			alert("You are a horrible Detector. Keep your day job. Your score is infinity.");
 		}
 	} else {
 		console.log("Tunnel length is good");
@@ -610,24 +610,24 @@ var submitGuess = function () {
 		console.log("clone length ", clone.length);
 		if (!clone.length) {
 			if (round == 1) {
-				alert("good job. your score is " + player1Score);
+				alert("Good job. Your score is " + player1Score);
 			} else {
-				alert("good job. your score is " + player2Score);
+				alert("Good job. Your score is " + player2Score);
 			}
 		} else {
 			if (round == 1) {
 				player1Score = 10000;
-				alert("you are a horrible Detector. Keep your day job. Your score is infinity");
+				alert("You are a horrible Detector. Keep your day job. Your score is infinity.");
 			} else {
 				player2Score = 10000;
-				alert("you are a horrible Detector. Keep your day job. Your score is infinity");
+				alert("You are a horrible Detector. Keep your day job. Your score is infinity.");
 			}
 		}
 	}
 
 	if (round == 1 && computer != 1) {
 		// popup that they need to switch roles
-		alert("Round 1 over. Now switch roles. The game will restart when you click ok");
+		alert("Round 1 over. Now switch roles. The game will restart when you click OK.");
 		restartGame();
 	} else if (computer == 1) {
 		alert("Game over. You may submit your score.");
@@ -640,7 +640,7 @@ var submitGuess = function () {
 			winningScore = player2Score;
 			winningPlayer = player2Name;
 		}
-		alert("The game is over. The winning player can save their score");
+		alert("The game is over. The winning player can save their score.");
 		document.getElementById("score").style.display="inline-block";
 	}	
 };
@@ -688,9 +688,6 @@ function restartGame() {
 			startGameInEasyMode();
 		}
 	}
-
-
-
 }
 
 
