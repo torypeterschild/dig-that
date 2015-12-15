@@ -169,7 +169,7 @@ div.popup {
 body {
     border-width: 0px;
     padding: auto;
-    background-color: transparent;
+    background-color: #f5f8fa !important;
 }
 
 #infoPanel {
