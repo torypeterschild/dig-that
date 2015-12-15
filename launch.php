@@ -26,7 +26,7 @@
             <b>Phases:</b> <br>
 
             <ol>
-                <li> The Detector looks away from the screen while the Badguy builds a tunnel. The tunnel needs to be a simple path with a start and end node on the top and bottom rows respectively. In order to construct the tunnel, the Badguy needs to click on the edges he wants to be a part of his tunnel. When he is content with the tunnel, he clicks on the "I'm done building my tunnel" button on the right of the screen and the tunnel will disappear. </li> 
+                <li> The Detector looks away from the screen while the Badguy builds a tunnel. Maximum length of the tunnel is randomly generated, and will be specified before building begins. The tunnel needs to be a simple path with a start and end node on the top and bottom rows respectively. In order to construct the tunnel, the Badguy needs to click on the edges he wants to be a part of his tunnel. When he is content with the tunnel, he clicks on the "I'm done building my tunnel" button on the right of the screen and the tunnel will disappear. </li> 
 
                 <li> Now the Detector can begin detecting by placing probes on any number of intersections. When the Detector is done, click the "Done placing first round of probes" button. If a given probe is on top of a part of the tunnel, the probe will turn green. Repeat this process one more time. </li>
 
