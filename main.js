@@ -29,19 +29,6 @@ var gameState = -1;
 	// 2 = detector placing 2nd hour probes
 	// 3 = detector detecting
 
-$(function() {
-	$("#start").click(function(){
-		$("#lookaway").show();
-		$("#lookaway").delay(1000).fadeOut();
-	});
-});
-
-$(function() {
-	$("#startEasy").click(function(){
-		$("#lookaway").show();
-		$("#lookaway").delay(1000).fadeOut();
-	});
-});
 
 // Clear the board before a new game
 var clearBoard = function () {
@@ -434,12 +421,16 @@ for(var i=0;i<probes.length;i++){
 }
 
 var startGameInRegularMode = function () {
+	clearBoard();
 	gameMode = 0;
+	alert("Detector, please look away while Badguy builds a tunnel.");
 	startGame();
 }
 
 var startGameInEasyMode = function () {
+	clearBoard();
 	gameMode = 1;
+	alert("Detector, please look away while Badguy builds a tunnel.");
 	startGame();
 }
 
