@@ -206,6 +206,10 @@ body {
     width: 300px;
 }
 
+#infoPanel input {
+    margin-bottom: 5px;
+}
+
 #infoPanel div {
     margin-bottom: 10px;
     margin-left: 10px;
