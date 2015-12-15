@@ -10,7 +10,7 @@
 
 </head>
 <body>
-    <div class="post">
+    <div id="bigTitle" class="post">
         <h1 class="title">Dig That V2</h1>
     </div>
     <div >
@@ -282,7 +282,7 @@
 
 
     <div id="last10" class="post">
-        <h2 class="title">Last 10 scores</h2>
+        <h2 class="title">Last 10 Scores</h2>
         <?php
     // functions.php in case of an opening in the same window
     // ../../functions.php in case of an opening in a new window
