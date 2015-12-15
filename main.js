@@ -43,14 +43,15 @@ $(function() {
 	});
 });
 
-// // Clear the board before a new game
-// var clearBoard = function () {
-// 	var animatedElements = $(".animate");
-// 	for(var i=0; i<animatedElements.length; i++){
-//     var element = testimonialElements.eq(i);
-//     element.removeClass("animate");
-// 	}
-// }
+// Clear the board before a new game
+var clearBoard = function () {
+	$(".animate").filter(function() {
+    $(this).removeClass("animate");
+	});
+	$(".final").filter(function() {
+    $(this).removeClass("final");
+	});
+}
 
 function Node(id) {
 	this.edges = [];
@@ -455,6 +456,7 @@ var startGameEasyAI = function () {
 }
 
 var startGame = function () {
+	clearBoard();
 	if (round == 1) {
 		tunnelLength = Math.floor(Math.random() * 13) + 8;
 		maxTunnelLength = tunnelLength;
@@ -587,6 +589,52 @@ var doneAddingProbes = function () {
 	console.log("probes list after done ", probesList);
 };
 
+function restartGame() {
+	message.innerHTML = "";
+	round++;
+	if (computer == 1) {
+		if (gameMode == 0) { //regular ai
+			numProbes = 0;
+			probesList = [];
+			tunnel = new Tunnel();
+			finalTunnelGuess = [];
+			gameMode = -1;
+			computer = -1;
+			gameState = -1;
+			startGameAI();
+		} else {
+			numProbes = 0;
+			probesList = [];
+			tunnel = new Tunnel();
+			finalTunnelGuess = [];
+			gameMode = -1;
+			computer = -1;
+			gameState = -1;
+			startGameEasyAI();
+		}
+	} else {
+		if (gameMode == 0) {
+			numProbes = 0;
+			probesList = [];
+			tunnel = new Tunnel();
+			finalTunnelGuess = [];
+			gameMode = -1;
+			computer = -1;
+			gameState = -1;
+			startGameInRegularMode();
+		} else {
+			numProbes = 0;
+			probesList = [];
+			tunnel = new Tunnel();
+			finalTunnelGuess = [];
+			gameMode = -1;
+			computer = -1;
+			gameState = -1;
+			startGameInEasyMode();
+		}
+	}
+}
+
 var submitGuess = function () {
 	console.log("Final tunnel guess: ", finalTunnelGuess);
 	console.log("The actual tunnel: ", tunnel.edges);
@@ -649,52 +697,6 @@ var submitGuess = function () {
 		document.getElementById("score").style.display="inline-block";
 	}	
 };
-
-function restartGame() {
-	message.innerHTML = "";
-	round++;
-	if (computer == 1) {
-		if (gameMode == 0) { //regular ai
-			numProbes = 0;
-			probesList = [];
-			tunnel = new Tunnel();
-			finalTunnelGuess = [];
-			gameMode = -1;
-			computer = -1;
-			gameState = -1;
-			startGameAI();
-		} else {
-			numProbes = 0;
-			probesList = [];
-			tunnel = new Tunnel();
-			finalTunnelGuess = [];
-			gameMode = -1;
-			computer = -1;
-			gameState = -1;
-			startGameEasyAI();
-		}
-	} else {
-		if (gameMode == 0) {
-			numProbes = 0;
-			probesList = [];
-			tunnel = new Tunnel();
-			finalTunnelGuess = [];
-			gameMode = -1;
-			computer = -1;
-			gameState = -1;
-			startGameInRegularMode();
-		} else {
-			numProbes = 0;
-			probesList = [];
-			tunnel = new Tunnel();
-			finalTunnelGuess = [];
-			gameMode = -1;
-			computer = -1;
-			gameState = -1;
-			startGameInEasyMode();
-		}
-	}
-}
 
 
 // AI tunnel stuff
