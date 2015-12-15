@@ -11,33 +11,24 @@
 </head>
 <body>
     <div id="bigTitle" class="post">
-        <h1 class="title">Dig That V2</h1>
+        <h1 class="title">Dig That (The Best and Only Version)</h1>
+        <h2>(And certainly the only functional version)</h2>
     </div>
-    <div >
-
+    <div>
         <div class="instr">
-
-            <b>Overview:</b> <br>
-
-            <p>
-                Dig That is a two-player game between a Badguy and a Detector. The Badguy builds an explosive tunnel under the city and it is the role of the Detector to detect the tunnel. Two people can play, or one person can play Detector and the computer will be the Badguy. The game has four phases.
-            </p>
-
-            <b>Phases:</b> <br>
-
+            <strong>Overview:</strong> <br/>
+            <p> Dig That is a two-player game between a Badguy and a Detector. The Badguy builds an explosive tunnel under the city and it is the role of the Detector to detect the tunnel. Two people can play, or one person can play Detector and the computer will be the Badguy. The game has four phases.</p>
+            <strong>Phases:</strong> <br/>
             <ol>
                 <li> The Detector looks away from the screen while the Badguy builds a tunnel. Maximum length of the tunnel is randomly generated, and will be specified before building begins. The tunnel needs to be a simple path with a start and end node on the top and bottom rows respectively. In order to construct the tunnel, the Badguy needs to click on the edges he wants to be a part of his tunnel. When he is content with the tunnel, he clicks on the "I'm done building my tunnel" button on the right of the screen and the tunnel will disappear. </li> 
-
                 <li> Now the Detector can begin detecting by placing probes on any number of intersections. When the Detector is done, click the "Done placing first round of probes" button. If a given probe is on top of a part of the tunnel, the probe will turn green. Repeat this process one more time. </li>
-
                 <li> The Detector selects what she believes is the location of the tunnel. When she is done, she clicks on the "Ready to submit final guess" button. </li>
-
             </ol>
             <p>If the Detector correctly detected the tunnel, her score is the maximum of the number of probes she used between the two rounds. If she incorrectly detected the tunnel, then she gets a score of infinity. Now the two players reverse roles. The winner is the player with the lowest score. </p>
         </div>
     </div>
 
-    <div id="gameArea" >
+    <div id="gameArea">
         <div id="gridWrapper">
 
             <div class="edgeWrapper" id="horiz0">
