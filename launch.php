@@ -269,7 +269,7 @@
                     document.location.href="/drecco/index.php?task=DigThatV2&winner="+wr+"&ws="+ws;
                 }
             </script>
-            <button id="score" style="display:none" onClick="postScore('2300', 'vsm')" type="button">Save Score</button>
+            <button id="score" style="display:none" onClick="postScore(winningScore, winningPlayer)" type="button">Save Score</button>
         </div>
     </div>
     <script type="text/javascript" src="logic.js"></script>

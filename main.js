@@ -6,6 +6,7 @@
 // var message = document.getElementById('message');
 var boardSize = 6;
 var tunnelLength = 12;
+var maxTunnelLength;
 var numProbes = 0;
 var probesList = [];
 var tunnel = new Tunnel();
@@ -13,9 +14,11 @@ var finalTunnelGuess = [];
 var gameMode = -1;
 var player1Name = "";
 var player2Name = "";
-var player1Score = -1;
-var player2Score = -1;
+var player1Score = 0;
+var player2Score = 0;
 var round = 1;
+var winningScore = 0;
+var winningPlayer = "";
 	// 0 = Regular
 	// 1 = Easy Mode
 var computer = -1;
@@ -446,12 +449,20 @@ var startGameEasyAI = function () {
 }
 
 var startGame = function () {
+	if (round == 1) {
+		tunnelLength = Math.floor(Math.random() * 13) + 8;
+		maxTunnelLength = tunnelLength;
+		alert("tunnel length is " + tunnelLength);
+	} else {
+		tunnelLength = maxTunnelLength;
+	}
 	gameState++;
 	console.log("GAME STATE IS ", gameState);
 	document.getElementById('start').style.display = 'none';
 	document.getElementById('startEasy').style.display = 'none';
 	document.getElementById('startAI').style.display = 'none';
 	document.getElementById('startEasyAI').style.display = 'none';
+	document.getElementById('submitGuess').style.display = 'none';
 	if (gameState == 0) {
 		tunnelInfo.innerHTML = "Tunnel can be up to " + tunnelLength + " edges long.";
 		remainingPieces.innerHTML = "Edges left: " + tunnelLength;
@@ -485,8 +496,8 @@ var doneAddingTunnels = function () {
 		$("#" + tunnel.edges[e].id).toggleClass("animate");
 	}
 
-	tunnelLength = 12;
-	tunnel = createAITunnel();
+	// tunnelLength = 12;
+	// tunnel = createAITunnel();
 
 	console.log("final final tunnel:");
 	console.log("nodes");
@@ -522,15 +533,46 @@ var doneAddingProbes = function () {
 	}
 
 	if (gameState == 1) {
+		//update score
+		if (computer == 1) {
+			//only need to update player1 score
+			player1Score = probesList.length;
+		} else {
+			if (round == 1) {
+				player1Score = probesList.length;
+			} else {
+				player2Score = probesList.length;
+			}
+		}
+
+		console.log("done with probe placement in round " + round);
+		console.log("player 1 score: " + player1Score);
+		console.log("player 2 score: " + player2Score);
+
 		probesList = [];
 		message.innerHTML = "Detector, please place the second round of probes..";
 		document.getElementById('probesPlaced1').style.display = 'none';
 		document.getElementById('probesPlaced2').style.display = 'block';
 
-
-
 		gameState++;
+
 	} else if (gameState == 2) {
+		//update score
+		if (computer == 1) {
+			//only need to update player1 score
+			player1Score = Math.max(player1Score, probesList.length);
+		} else {
+			if (round == 1) {
+				player1Score = Math.max(player1Score, probesList.length);
+			} else {
+				player2Score = Math.max(player2Score, probesList.length);
+			}
+		}
+
+		console.log("done with probe placement in round " + round);
+		console.log("player 1 score: " + player1Score);
+		console.log("player 2 score: " + player2Score);
+
 		document.getElementById('probesPlaced2').style.display = 'none';
 		document.getElementById('submitGuess').style.display = 'block';
 		message.innerHTML = "Now, select all edges in the tunnel to submit your final guess.";
@@ -548,7 +590,13 @@ var submitGuess = function () {
 	var clone = finalTunnelGuess.slice(0);
 	if (finalTunnelGuess.length != Object.keys(tunnel.edges).length) {
 		console.log("Tunnel length not the same");
-		alert("you are a horrible Detector. Keep your day job.");
+		if (round == 1) {
+			player1Score = 10000;
+			alert("you are a horrible Detector. Keep your day job. Your score is infinity");
+		} else {
+			player2Score = 10000;
+			alert("you are a horrible Detector. Keep your day job. Your score is infinity");
+		}
 	} else {
 		console.log("Tunnel length is good");
 		for (var i = 0; i < finalTunnelGuess.length; i++) {
@@ -561,10 +609,89 @@ var submitGuess = function () {
 		}
 		console.log("clone length ", clone.length);
 		if (!clone.length) {
-			alert("good job");
+			if (round == 1) {
+				alert("good job. your score is " + player1Score);
+			} else {
+				alert("good job. your score is " + player2Score);
+			}
+		} else {
+			if (round == 1) {
+				player1Score = 10000;
+				alert("you are a horrible Detector. Keep your day job. Your score is infinity");
+			} else {
+				player2Score = 10000;
+				alert("you are a horrible Detector. Keep your day job. Your score is infinity");
+			}
 		}
 	}
+
+	if (round == 1 && computer != 1) {
+		// popup that they need to switch roles
+		alert("Round 1 over. Now switch roles. The game will restart when you click ok");
+		restartGame();
+	} else if (computer == 1) {
+		alert("Game over. You may submit your score.");
+		document.getElementById("score").style.display="inline-block";
+	} else {
+		if (player1Score < player2Score ) {
+			winningScore = player1Score;
+			winningPlayer = player1Name;
+		} else {
+			winningScore = player2Score;
+			winningPlayer = player2Name;
+		}
+		alert("The game is over. The winning player can save their score");
+		document.getElementById("score").style.display="inline-block";
+	}	
 };
+
+function restartGame() {
+	round++;
+	if (computer == 1) {
+		if (gameMode == 0) { //regular ai
+			numProbes = 0;
+			probesList = [];
+			tunnel = new Tunnel();
+			finalTunnelGuess = [];
+			gameMode = -1;
+			computer = -1;
+			gameState = -1;
+			startGameAI();
+		} else {
+			numProbes = 0;
+			probesList = [];
+			tunnel = new Tunnel();
+			finalTunnelGuess = [];
+			gameMode = -1;
+			computer = -1;
+			gameState = -1;
+			startGameEasyAI();
+		}
+	} else {
+		if (gameMode == 0) {
+			numProbes = 0;
+			probesList = [];
+			tunnel = new Tunnel();
+			finalTunnelGuess = [];
+			gameMode = -1;
+			computer = -1;
+			gameState = -1;
+			startGameInRegularMode();
+		} else {
+			numProbes = 0;
+			probesList = [];
+			tunnel = new Tunnel();
+			finalTunnelGuess = [];
+			gameMode = -1;
+			computer = -1;
+			gameState = -1;
+			startGameInEasyMode();
+		}
+	}
+
+
+
+}
 
 
 // AI tunnel stuff
