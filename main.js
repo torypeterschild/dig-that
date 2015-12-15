@@ -3,7 +3,6 @@
  */
 
 // Global variables
-// var message = document.getElementById('message');
 var boardSize = 6;
 var tunnelLength = 12;
 var maxTunnelLength;
@@ -12,6 +11,8 @@ var probesList = [];
 var tunnel = new Tunnel();
 var finalTunnelGuess = [];
 var gameMode = -1;
+	// 0 = Regular
+	// 1 = Easy Mode
 var player1Name = "";
 var player2Name = "";
 var player1Score = 0;
@@ -19,8 +20,6 @@ var player2Score = 0;
 var round = 1;
 var winningScore = 0;
 var winningPlayer = "";
-	// 0 = Regular
-	// 1 = Easy Mode
 var computer = -1;
 	// 0 = Humans
 	// 1 = AI	
@@ -43,6 +42,15 @@ $(function() {
 		$("#lookaway").delay(1000).fadeOut();
 	});
 });
+
+// // Clear the board before a new game
+// var clearBoard = function () {
+// 	var animatedElements = $(".animate");
+// 	for(var i=0; i<animatedElements.length; i++){
+//     var element = testimonialElements.eq(i);
+//     element.removeClass("animate");
+// 	}
+// }
 
 function Node(id) {
 	this.edges = [];
@@ -287,7 +295,7 @@ Tunnel.prototype.toString = function tunnelToString() {
 	return ret;
 }
 
-// Eetermine if was clicked before or not and add/remove edge from tunnel class
+// Determine if was clicked before or not and add/remove edge from tunnel class
 var edges = document.getElementsByClassName("edge");
 
 var edgeClicked = function() {
@@ -295,11 +303,11 @@ var edgeClicked = function() {
 	if (gameState == 0) {
 		$(this).toggleClass("animate");
 		if (edgeId in tunnel.edges) {
-			// get nodes
+			// Get nodes
 			tunnelLength++;
 			var n1 = tunnel.edges[edgeId].n1;
 			var n2 = tunnel.edges[edgeId].n2;
-			// remove this edge from each node's edge list
+			// Remove this edge from each node's edge list
 			n1.removeEdge(tunnel.edges[edgeId]);
 			n2.removeEdge(tunnel.edges[edgeId]);
 			if (n1.edges.length == 0) {
@@ -376,7 +384,6 @@ var edgeClicked = function() {
 
 		// this.style.background = this.style.background=='yellow'? '#63f9ff':'yellow';
 		remainingPieces.innerHTML = "Edges left: " + tunnelLength;
-		// currentTunnel.innerHTML = "You picked edge " + this.id;
 		console.log(tunnel.edges);
 		console.log("Tunnel nodes: ", tunnel.nodes);
 	} else if (gameState == 3) {
@@ -412,7 +419,6 @@ var probeClicked = function() {
 			numProbes--;
 		}
 
-		// probeCount.innerHTML = "You have placed " + numProbes + " probe(s).";
 		this.style.background = this.style.background == 'red' ? 'blue' : 'red';
 	}
 };
@@ -473,12 +479,11 @@ var startGame = function () {
 	}
 };
 
-// TODO: need to actually stop them if they built a bad tunnel
 var doneAddingTunnels = function () {
 	var valid = tunnel.validTunnel();
 	console.log(valid);
 
-	//if the tunnel isn't valid, don't let the game keep going
+	// If the tunnel isn't valid, don't let the game keep going
 	if(!valid) {
 		alert("Your tunnel is invalid. It must start on the top edge, end on the bottom edge, and be a single simple path");
 		return;
@@ -626,7 +631,7 @@ var submitGuess = function () {
 	}
 
 	if (round == 1 && computer != 1) {
-		// popup that they need to switch roles
+		// Popup that they need to switch roles
 		alert("Round 1 over. Now switch roles. The game will restart when you click OK.");
 		restartGame();
 	} else if (computer == 1) {
@@ -646,6 +651,7 @@ var submitGuess = function () {
 };
 
 function restartGame() {
+	message.innerHTML = "";
 	round++;
 	if (computer == 1) {
 		if (gameMode == 0) { //regular ai
@@ -707,7 +713,7 @@ function createAITunnel() {
 	while(true) {
 		console.log("curr node: " + currNode);
 
-		//check if on end and if yes break
+		// Check if on end and if yes break
 		if (Math.floor(currNode.id / (boardSize+1)) == boardSize) {
 			console.log("on end!")
 			console.log("final tunnel: " + aiTunnel);
@@ -715,11 +721,11 @@ function createAITunnel() {
 			break;
 		}
 
-		//pick an edge from the current nodes edges that's not the incoming edge
+		// Pick an edge from the current nodes edges that's not the incoming edge
 		var potentialEdge = getRandomEdge(currNodeFromGraph, aiTunnel);
 		console.log("first potential edge: " + potentialEdge);
 		
-		//see if adding that edge leaves enough pipes to get to the end
+		// See if adding that edge leaves enough pipes to get to the end
 		while (!potentialEdgeValid(potentialEdge, currNode, aiTunnel)) {
 		//while(false) {
 			potentialEdge = getRandomEdge(currNodeFromGraph, aiTunnel);
@@ -727,27 +733,27 @@ function createAITunnel() {
 			//sleepFor(1000);
 		}
 
-		//now we have a good edge, update it's n1
+		// Now we have a good edge, update it's n1
 		potentialEdge.n1 = currNode;
 
-		//add the edge to currNode
+		// Add the edge to currNode
 		currNode.addEdge(potentialEdge);
 
-		//add them both to the tunnel
+		// Add them both to the tunnel
 		aiTunnel.addNode(currNode);
 		aiTunnel.addEdge(potentialEdge);
 
-		//get the next node
+		// Get the next node
 		var currNodeId = currNode.id;
 		var newNodeId = null;
-		//console.log("curr node id: " + currNodeId);
+		// console.log("curr node id: " + currNodeId);
 		for (var i = 0; i < potentialEdge.allNodes.length; i++) {
-			//console.log("potentialEdge.allNodes[i].id: " + potentialEdge.allNodes[i].id );
+			// console.log("potentialEdge.allNodes[i].id: " + potentialEdge.allNodes[i].id );
 			if (potentialEdge.allNodes[i].id != currNodeId) {
 				newNodeId = potentialEdge.allNodes[i].id;
 			}
 		}
-		//console.log("new node id: " + newNodeId);
+		// console.log("new node id: " + newNodeId);
 
 		currNodeFromGraph = graph.nodes[newNodeId];
 		currNode = new Node(newNodeId);
@@ -785,8 +791,8 @@ function potentialEdgeValid(potentialEdge, currNode, tunnel) {
 	console.log("edges left so far: " + edgesLeft);
 	console.log("row num of edge: " + rowNum);
 
-	//check that the other end of the new edge isn't already in the tunnel
-		//(this means we created a loop)
+	// Check that the other end of the new edge isn't already in the tunnel
+	// (This means we created a loop)
 	var currNodeId = currNode.id;
 	var newNodeId = null;
 	console.log("curr node id: " + currNodeId);
@@ -806,12 +812,12 @@ function potentialEdgeValid(potentialEdge, currNode, tunnel) {
 	}
 
 
-	//if the edge is horizontal then need (remaining pieces - (boardSize - rowNum)) >= 0
-	//check if have enough nodes to end
+	// If the edge is horizontal then need (remaining pieces - (boardSize - rowNum)) >= 0
+	// Check if have enough nodes to end
 	var neededToEnd = -1;
 	if (potentialEdge.id[0] == "h") {
 		console.log("edge is horiz");
-		//check if h edge below is already in tunnel
+		// Check if h edge below is already in tunnel
 		var edgeBelowId = Number(potentialEdge.id.slice(1)) + boardSize;
 		var edgeBelow = "h" + edgeBelowId;
 		if (edgeBelow in tunnel.edges) {
@@ -827,9 +833,9 @@ function potentialEdgeValid(potentialEdge, currNode, tunnel) {
 			neededToEnd = (boardSize - rowNum) - 1;
 		} else {
 			console.log("edge is v going up");
-			//console.log("so for now returning false");
-			//return false;
-			//can't go up on the edges
+			// console.log("so for now returning false");
+			// return false;
+			// can't go up on the edges
 			var potEdgeIdNum = Number(potentialEdge.id.slice(1));
 			if(potEdgeIdNum % (boardSize + 1) == 0 || potEdgeIdNum % (boardSize + 1) == boardSize) {
 				console.log("can't go up on an outside edge");
@@ -848,7 +854,6 @@ function potentialEdgeValid(potentialEdge, currNode, tunnel) {
 	tunnel.removeNode(currNode);
 	return ((edgesLeft - neededToEnd) >= 0);
 
-
 	//if edge is vertical 
 		//if edge is downward need (remaining pieces - (boardSize - rownum) - 1) >= 0
 		//else if upward need (remaining pieces - (boardSize - rownum) + 1) >= 0
@@ -864,7 +869,7 @@ function getRowNum(edge) {
 }
 
 function getRandomEdge(node, tunnel) {
-	//given the tunnel and the current node
+	// Given the tunnel and the current node
 	var nodeId = node.id;
 	
 	var existingEdgeId;
@@ -909,11 +914,11 @@ function Graph() {
 			for(var j = 0; j < horizontalEdgeIds.length; j++) {
 				var edgeId = horizontalEdgeIds[j];
 				if (edgeId in this.edges) {
-					//add the node to the edge
+					// Add the node to the edge
 					this.edges[edgeId].allNodes.push(node);
 					node.addEdge(this.edges[edgeId]);
 				} else {
-					//create new edge and add it to edge object
+					// Create new edge and add it to edge object
 					var edge = new Edge(null, null, edgeId);
 					edge.allNodes.push(node);
 					this.edges[edgeId] = edge;
@@ -925,11 +930,11 @@ function Graph() {
 			for (var j = 0; j < verticalEdgeIds.length; j++) {
 				var edgeId = verticalEdgeIds[j];
 				if (edgeId in this.edges) {
-					//add the node to it
+					// Add the node to it
 					this.edges[edgeId].allNodes.push(node);
 					node.addEdge(this.edges[edgeId]);
 				} else {
-					//create new edge
+					// Create new edge
 					var edge = new Edge(null, null, edgeId);
 					edge.allNodes.push(node);
 					this.edges[edgeId] = edge;
@@ -954,7 +959,7 @@ function getHorizontalEdgesIds(i) {
 
 	// console.log("getting horizontal edges for node " + i);
 
-	//create left and right edges
+	// Create left and right edges
 	var rowNum = Math.floor(i / (boardSize + 1));
 	var leftEdge = i - (rowNum + 1);
 	var rightEdge = i - rowNum;
@@ -965,19 +970,19 @@ function getHorizontalEdgesIds(i) {
 	// console.log("left edge: " + leftEdge);
 	// console.log("right edge: " + rightEdge);
 
-	//if on left border, only has right edge
+	// If on left border, only has right edge
 	if (i % (boardSize + 1) == 0) {
 		// console.log("on left border");
 		leftEdgeId = null;
 	}
 
-	//if on right border only has left edge
+	// If on right border only has left edge
 	if (i % (boardSize + 1) == 6) {
 		// console.log("on right border");
 		rightEdgeId = null;
 	}
 
-	//add non null edges
+	// Add non null edges
 	if (leftEdgeId != null) {
 		horizontalEdgeIds.push(leftEdgeId);
 	}
@@ -994,7 +999,7 @@ function getVerticalEdgesIds(i) {
 	var verticalEdgeIds = [];
 	// console.log("getting vertical edges for node " + i);
 	
-	//if on the first row only has a down edge
+	// If on the first row only has a down edge
 	if (i <= boardSize) {
 		// console.log("on first row");
 		var edgeId = "v" + i;
@@ -1002,7 +1007,7 @@ function getVerticalEdgesIds(i) {
 		return verticalEdgeIds;
 	}
 
-	//if on the bottom row only has an up edge
+	// If on the bottom row only has an up edge
 	if (i >= (boardSize * (boardSize + 1))) {
 		// console.log("on bottom row");
 		var upEdgeIdNum = i - (boardSize + 1);
@@ -1011,7 +1016,7 @@ function getVerticalEdgesIds(i) {
 		return verticalEdgeIds;
 	}
 
-	//else has both edges
+	// Else has both edges
 	var downEdgeId = "v" + i;
 	var upEdgeIdNum = i - (boardSize + 1);
 	var upEdgeId = "v" + upEdgeIdNum;
