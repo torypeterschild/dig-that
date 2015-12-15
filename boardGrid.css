@@ -1,11 +1,12 @@
 .title {
     font-family: "Helvetica", Helvetica, sans-serif;
+    margin-left: 30px;
 }
 
 #gridWrapper {
     position: relative;
     width: 960px;
-    margin-left:auto;
+    margin-left:30px;
     margin-right:auto;
     margin-bottom: 20px;
     background-color: transparent;

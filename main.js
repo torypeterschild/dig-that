@@ -700,7 +700,15 @@ var submitGuess = function () {
 			winningScore = player2Score;
 			winningPlayer = player2Name;
 		}
-		alert("The game is over. The winning player can save their score.");
+		if(computer != 1) {
+			if (player1Score < player2Score) {
+				alert("The game is over. Player 1 won with a score of " + player1Score + ". Player 1 can save their score.");
+			} else {
+				alert("The game is over. Player 2 won with a score of " + player2Score + ". Player 2 can save their score.");
+			}
+		} else {
+			alert("The game is over. Your score is " + player1Score + ". You can save your score.");
+		}
 		document.getElementById("score").style.display="inline-block";
 	}	
 };
