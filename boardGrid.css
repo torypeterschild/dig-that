@@ -28,6 +28,7 @@
     margin-bottom: 25px;
     padding: 12px 0px 0px 30px;
     background: #f5f8fa;
+    font-family: "Helvetica", Helvetica, sans-serif;
 }
 
 .post .title {
@@ -66,6 +67,8 @@
 .post table {
     width: 100%;
     border-collapse: collapse !important;
+    font-family: "Helvetica", Helvetica, sans-serif;
+    font-size: 12pt;
 }
 
 .post td, th {
