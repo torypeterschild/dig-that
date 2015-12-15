@@ -456,7 +456,7 @@ var startGame = function () {
 	if (round == 1) {
 		tunnelLength = Math.floor(Math.random() * 13) + 8;
 		maxTunnelLength = tunnelLength;
-		alert("Tunnel length is " + tunnelLength + ".");
+		alert("Maximum tunnel length is " + tunnelLength + ".");
 	} else {
 		tunnelLength = maxTunnelLength;
 	}
