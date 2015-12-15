@@ -54,6 +54,9 @@ var clearBoard = function () {
 	$(".detectedEdge").filter(function() {
     $(this).removeClass("detectedEdge");
 	});
+	$(".reveal").filter(function() {
+    $(this).removeClass("reveal");
+	});
 }
 
 function Node(id) {
@@ -638,6 +641,16 @@ function restartGame() {
 	}
 }
 
+var revealTunnel = function () {
+	for (var e in tunnel.edges) {
+		console.log("REVEALING TUNNEL");
+		console.log("tunnel.edges[e].id is ", tunnel.edges[e].id);
+		$("#" + tunnel.edges[e].id).removeClass("final");
+		$("#" + tunnel.edges[e].id).removeClass("animate");
+		$("#" + tunnel.edges[e].id).addClass("reveal");
+	}
+}
+
 var submitGuess = function () {
 	console.log("Final tunnel guess: ", finalTunnelGuess);
 	console.log("The actual tunnel: ", tunnel.edges);
@@ -648,9 +661,11 @@ var submitGuess = function () {
 		console.log("Tunnel length not the same");
 		if (round == 1) {
 			player1Score = 10000;
+			revealTunnel();
 			alert("You are a horrible Detector. Keep your day job. Your score is infinity.");
 		} else {
 			player2Score = 10000;
+			revealTunnel();
 			alert("You are a horrible Detector. Keep your day job. Your score is infinity.");
 		}
 	} else {
@@ -673,9 +688,11 @@ var submitGuess = function () {
 		} else {
 			if (round == 1) {
 				player1Score = 10000;
+				revealTunnel();
 				alert("You are a horrible Detector. Keep your day job. Your score is infinity.");
 			} else {
 				player2Score = 10000;
+				revealTunnel();
 				alert("You are a horrible Detector. Keep your day job. Your score is infinity.");
 			}
 		}
