@@ -20,6 +20,10 @@
     clear: both;
 }
 
+#gameArea {
+    margin-top: 20px;
+}
+
 .post {
     margin-bottom: 25px;
     padding: 0px 0px 0px 0px;
@@ -72,8 +76,10 @@
 .instr {
     font-family: "Helvetica", Helvetica, sans-serif;
     font-size: 10pt;
-    line-height: 1.0;
+    line-height: 1.2;
     margin-bottom: 20px;
+    padding: 12px 30px 0px 30px;
+    width: 800px;
 }
 
 div.popup {
