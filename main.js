@@ -531,10 +531,6 @@ var doneAddingProbes = function () {
 			$("#p" + probesList[i]).addClass("detectedEdge");
 		}
 	}
-	// Iterate through probesList to turn off and delete
-	// for (var i = 0; i < probesList.length; i++) {
-	// 	$("#p" + probesList[i]).addClass("detectedEdge");
-	// }
 
 	if (gameState == 1) {
 		//update score

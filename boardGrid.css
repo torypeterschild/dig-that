@@ -134,7 +134,7 @@ div.popup {
     float: left;
     width: 70px;
     height: 10px;
-    background-color: #b0daff;
+    background-color: #262626;
     /*TODO: change back to white for final version*/
     border-radius: 3px;
     -webkit-transition: width 2s ease, height 2s ease;
@@ -150,7 +150,7 @@ div.popup {
     width: 10px;
     height: 10px;
     border-radius: 2px;
-    background-color: blue;
+    background-color: #7f7f7f;
     -webkit-transition: width 2s ease, height 2s ease;
     -moz-transition: width 2s ease, height 2s ease;
     -o-transition: width 2s ease, height 2s ease;
@@ -174,7 +174,7 @@ div.popup {
     left: 0px;
     width: 10px;
     height: 70px;
-    background-color: #b0daff;
+    background-color: #262626;
     /*TODO: change back to white for final version */
     border-radius: 3px;
     -webkit-transition: width 2s ease, height 2s ease;
@@ -251,7 +251,7 @@ p {
 }
 
 .probe.detectedEdge {
-    background-color: #25ff72 !important;
+    background-color: #33e12e !important;
 }
 
 .hedge.animate {
@@ -327,19 +327,19 @@ p {
     33% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -353,19 +353,19 @@ p {
     33% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -379,19 +379,19 @@ p {
     33% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -405,19 +405,19 @@ p {
     33% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -431,19 +431,19 @@ p {
     33% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -460,19 +460,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -486,19 +486,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -512,19 +512,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -538,19 +538,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -564,19 +564,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -594,19 +594,19 @@ p {
     33% {
         width: 70px;
         height: 20px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     66% {
         width: 70px;
         height: 20px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #12bb2b;
+        background: #e161c8;
     }
 }
 
@@ -620,19 +620,19 @@ p {
     33% {
         width: 70px;
         height: 20px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     66% {
         width: 70px;
         height: 20px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #12bb2b;
+        background: #e161c8;
     }
 }
 
@@ -646,19 +646,19 @@ p {
     33% {
         width: 70px;
         height: 20px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     66% {
         width: 70px;
         height: 20px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #12bb2b;
+        background: #e161c8;
     }
 }
 
@@ -698,19 +698,19 @@ p {
     33% {
         width: 70px;
         height: 20px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     66% {
         width: 70px;
         height: 20px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #12bb2b;
+        background: #e161c8;
     }
 }
 
@@ -727,19 +727,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #12bb2b;
+        background: #e161c8;
     }
 }
 
@@ -753,19 +753,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #12bb2b;
+        background: #e161c8;
     }
 }
 
@@ -779,19 +779,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #12bb2b;
+        background: #e161c8;
     }
 }
 
@@ -805,19 +805,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #12bb2b;
+        background: #e161c8;
     }
 }
 
@@ -831,19 +831,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #12bb2b;
+        background: #e161c8;
     }
 }
 
