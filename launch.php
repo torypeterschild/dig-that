@@ -250,6 +250,7 @@
                     <input type="button" class="button grad transition" id="probesPlaced1" value="Done placing first round of probes." style="display: none">
                     <input type="button" class="button grad transition" id="probesPlaced2" value="Done placing second round of probes." style="display: none">
                     <input type="button" class="button grad transition" id="submitGuess" value="Ready to submit final guess." style="display: none">
+                    <button id="score" style="display:none" onClick="postScore(winningScore, winningPlayer)" type="button">Save Score</button>
                 </div>
                 <div class="badguy"></div>
                 <div class="detector"></div>
@@ -264,6 +265,8 @@
         <div>
             <script>
                 function postScore(ws, wr) {
+                console.log(ws);
+            console.log(wr);
                     if (!wr)
                         wr = "guest";
                     if (wr == "")
@@ -271,7 +274,7 @@
                     document.location.href="/drecco/index.php?task=DigThatV2&winner="+wr+"&ws="+ws;
                 }
             </script>
-            <button id="score" style="display:none" onClick="postScore(winningScore, winningPlayer)" type="button">Save Score</button>
+            <!-- <button id="score" style="display:none" onClick="postScore(winningScore, winningPlayer)" type="button">Save Score</button> -->
         </div>
     </div>
     <script type="text/javascript" src="logic.js"></script>
