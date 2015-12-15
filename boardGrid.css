@@ -81,9 +81,16 @@
 .instr {
     font-family: "Helvetica", Helvetica, sans-serif;
     font-size: 10pt;
-    line-height: 1.2;
+    line-height: 1.65;
     margin-bottom: 20px;
     padding: 12px 30px 0px 30px;
+    width: 800px;
+}
+
+.instr ol, li {
+    font-family: "Helvetica", Helvetica, sans-serif;
+    font-size: 10pt;
+    line-height: 1.65;
     width: 800px;
 }
 

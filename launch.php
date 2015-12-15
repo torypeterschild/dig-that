@@ -21,7 +21,7 @@
 
             <p>
                 Dig That is a two-player game between a Badguy and a Detector. The Badguy builds an explosive tunnel under the city and it is the role of the Detector to detect the tunnel. Two people can play, or one person can play Detector and the computer will be the Badguy. The game has four phases.
-            </p> <br>
+            </p>
 
             <b>Phases:</b> <br>
 
