@@ -10,34 +10,25 @@
 
 </head>
 <body>
-    <div class="post">
-        <h1 class="title">Dig That V2</h1>
+    <div id="bigTitle" class="post">
+        <h1 class="title">Dig That (The Best and Only Version)</h1>
+        <h2>(And certainly the only functional version)</h2>
     </div>
-    <div >
-
+    <div>
         <div class="instr">
-
-            <b>Overview:</b> <br>
-
-            <p>
-                Dig that is a two-player game between a Badguy and a Detector. The Badguy builds an explosive tunnel under the city and it is the role of the Detector to detect the tunnel. The Badguy can be played by the computer. The game has four phases.
-            </p> <br>
-
-            <b>Phases:</b> <br>
-
+            <strong>Overview:</strong> <br/>
+            <p> Dig That is a two-player game between a Badguy and a Detector. The Badguy builds an explosive tunnel under the city and it is the role of the Detector to detect the tunnel. Two people can play, or one person can play Detector and the computer will be the Badguy. The game has four phases.</p>
+            <strong>Phases:</strong> <br/>
             <ol>
-                <li> The Detector looks away from the screen while the Badguy builds the tunnel. The tunnel needs to be a simple path with a start and end node on the top and bottom rows respectively. In order to construct the tunnel the bad guy needs to click on the edges he wants to be a part of his tunnel. When he is content with the tunnel he clicks on the "finish tunnel" button on the right of the screen and the tunnel will disappear. </li> 
-
-                <li> Now the Detector can begin detecting by placing probes on any number of intersections. When the detector is done, click the "done with hour 1 button". If a given probe is on top of a part of the tunnel the probe will light up. Repeat this process one more time. </li>
-
-                <li> The Detector selects what she believes is the location of the tunnel. When she is done she clicks on the "done detecting tunnel" button. </li>
-
+                <li> The Detector looks away from the screen while the Badguy builds a tunnel. Maximum length of the tunnel is randomly generated, and will be specified before building begins. The tunnel needs to be a simple path with a start and end node on the top and bottom rows respectively. In order to construct the tunnel, the Badguy needs to click on the edges he wants to be a part of his tunnel. When he is content with the tunnel, he clicks on the "I'm done building my tunnel" button on the right of the screen and the tunnel will disappear. </li> 
+                <li> Now the Detector can begin detecting by placing probes on any number of intersections. When the Detector is done, click the "Done placing first round of probes" button. If a given probe is on top of a part of the tunnel, the probe will turn green. Repeat this process one more time. </li>
+                <li> The Detector selects what she believes is the location of the tunnel. When she is done, she clicks on the "Ready to submit final guess" button. </li>
             </ol>
-            <p>If the Detector correctly detected the tunnel, her score is the max of the number of probes she used between the two rounds. If she incorrectly detected the tunnel then she gets a score of infinity. Now the two players reverse roles. The winner is the player with the lowest score. </p>
+            <p>If the Detector correctly detected the tunnel, her score is the maximum of the number of probes she used between the two rounds. If she incorrectly detected the tunnel, then she gets a score of infinity. Now the two players reverse roles. The winner is the player with the lowest score. </p>
         </div>
     </div>
 
-    <div id="gameArea" >
+    <div id="gameArea">
         <div id="gridWrapper">
 
             <div class="edgeWrapper" id="horiz0">
@@ -250,6 +241,7 @@
                     <input type="button" class="button grad transition" id="probesPlaced1" value="Done placing first round of probes." style="display: none">
                     <input type="button" class="button grad transition" id="probesPlaced2" value="Done placing second round of probes." style="display: none">
                     <input type="button" class="button grad transition" id="submitGuess" value="Ready to submit final guess." style="display: none">
+                    <button id="score" style="display:none" onClick="postScore(winningScore, winningPlayer)" type="button">Save Score</button>
                 </div>
                 <div class="badguy"></div>
                 <div class="detector"></div>
@@ -264,6 +256,8 @@
         <div>
             <script>
                 function postScore(ws, wr) {
+                console.log(ws);
+            console.log(wr);
                     if (!wr)
                         wr = "guest";
                     if (wr == "")
@@ -271,7 +265,7 @@
                     document.location.href="/drecco/index.php?task=DigThatV2&winner="+wr+"&ws="+ws;
                 }
             </script>
-            <button id="score" style="display:none" onClick="postScore(winningScore, winningPlayer)" type="button">Save Score</button>
+            <!-- <button id="score" style="display:none" onClick="postScore(winningScore, winningPlayer)" type="button">Save Score</button> -->
         </div>
     </div>
     <script type="text/javascript" src="logic.js"></script>
@@ -279,7 +273,7 @@
 
 
     <div id="last10" class="post">
-        <h2 class="title">Last 10 scores</h2>
+        <h2 class="title">Last 10 Scores</h2>
         <?php
     // functions.php in case of an opening in the same window
     // ../../functions.php in case of an opening in a new window

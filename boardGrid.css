@@ -1,6 +1,10 @@
 .title {
     font-family: "Helvetica", Helvetica, sans-serif;
-    margin-left: 30px;
+    margin-left: 0px;
+}
+
+#bigTitle {
+    padding: 12px 30px 0px 30px;
 }
 
 #gridWrapper {
@@ -19,6 +23,7 @@
     margin-top: 15px;
     bottom: 0;
     clear: both;
+    padding: 12px 30px 0px 30px;
 }
 
 #gameArea {
@@ -27,7 +32,7 @@
 
 .post {
     margin-bottom: 25px;
-    padding: 12px 0px 0px 30px;
+    padding: 12px 0px 0px 0px;
     background: #f5f8fa;
     font-family: "Helvetica", Helvetica, sans-serif;
 }
@@ -35,10 +40,10 @@
 .post .title {
     height: 38px;
     _height: 41px;
-    padding: 12px 30px 0px 30px;
-    _padding: 5px 30px 0px 30px;
+    padding: 12px 30px 0px 0px;
+    _padding: 5px 30px 0px 0px;
     letter-spacing: -.5px;
-    color: #191919;
+    color: #00cee1;
 }
 
 .post .title a {
@@ -80,9 +85,16 @@
 .instr {
     font-family: "Helvetica", Helvetica, sans-serif;
     font-size: 10pt;
-    line-height: 1.2;
+    line-height: 1.65;
     margin-bottom: 20px;
     padding: 12px 30px 0px 30px;
+    width: 800px;
+}
+
+.instr ol, li {
+    font-family: "Helvetica", Helvetica, sans-serif;
+    font-size: 10pt;
+    line-height: 1.65;
     width: 800px;
 }
 
@@ -135,7 +147,7 @@ div.popup {
     float: left;
     width: 70px;
     height: 10px;
-    background-color: #b0daff;
+    background-color: #262626;
     /*TODO: change back to white for final version*/
     border-radius: 3px;
     -webkit-transition: width 2s ease, height 2s ease;
@@ -151,7 +163,7 @@ div.popup {
     width: 10px;
     height: 10px;
     border-radius: 2px;
-    background-color: blue;
+    background-color: #7f7f7f;
     -webkit-transition: width 2s ease, height 2s ease;
     -moz-transition: width 2s ease, height 2s ease;
     -o-transition: width 2s ease, height 2s ease;
@@ -175,7 +187,7 @@ div.popup {
     left: 0px;
     width: 10px;
     height: 70px;
-    background-color: #b0daff;
+    background-color: #262626;
     /*TODO: change back to white for final version */
     border-radius: 3px;
     -webkit-transition: width 2s ease, height 2s ease;
@@ -252,7 +264,7 @@ p {
 }
 
 .probe.detectedEdge {
-    background-color: #25ff72 !important;
+    background-color: #33e12e !important;
 }
 
 .hedge.animate {
@@ -292,7 +304,7 @@ p {
 }
 
 .hedge.reveal {
-    background-color: #ffd51d;
+    background-color: #00a0e1;
 /*    animation-name: hedgeFinal;
     animation-duration: 1s;
     animation-timing-function: ease;
@@ -302,7 +314,7 @@ p {
 }
 
 .vedge.reveal {
-    background-color: #ffd51d;
+    background-color: #00a0e1;
 /*    animation-name: vedgeFinal;
     animation-duration: 1s;
     animation-timing-function: ease;
@@ -328,19 +340,19 @@ p {
     33% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -354,19 +366,19 @@ p {
     33% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -380,19 +392,19 @@ p {
     33% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -406,19 +418,19 @@ p {
     33% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -432,19 +444,19 @@ p {
     33% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 70px;
         height: 20px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -461,19 +473,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -487,19 +499,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -513,19 +525,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -539,19 +551,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -565,19 +577,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #13b0f8;
+        background: #00dab2;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #13b0f8;
+        background: #00dab2;
     }
 }
 
@@ -595,19 +607,19 @@ p {
     33% {
         width: 70px;
         height: 20px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     66% {
         width: 70px;
         height: 20px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #12bb2b;
+        background: #e161c8;
     }
 }
 
@@ -621,19 +633,19 @@ p {
     33% {
         width: 70px;
         height: 20px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     66% {
         width: 70px;
         height: 20px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #12bb2b;
+        background: #e161c8;
     }
 }
 
@@ -647,19 +659,19 @@ p {
     33% {
         width: 70px;
         height: 20px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     66% {
         width: 70px;
         height: 20px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #12bb2b;
+        background: #e161c8;
     }
 }
 
@@ -699,19 +711,19 @@ p {
     33% {
         width: 70px;
         height: 20px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     66% {
         width: 70px;
         height: 20px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #12bb2b;
+        background: #e161c8;
     }
 }
 
@@ -728,19 +740,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #12bb2b;
+        background: #e161c8;
     }
 }
 
@@ -754,19 +766,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #12bb2b;
+        background: #e161c8;
     }
 }
 
@@ -780,19 +792,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #12bb2b;
+        background: #e161c8;
     }
 }
 
@@ -806,19 +818,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #12bb2b;
+        background: #e161c8;
     }
 }
 
@@ -832,19 +844,19 @@ p {
     33% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     66% {
         width: 20px;
         height: 70px;
-        background: #12bb2b;
+        background: #e161c8;
     }
 
     100% {
         transform: rotate(360deg);
         opacity: 1;
-        background: #12bb2b;
+        background: #e161c8;
     }
 }
 

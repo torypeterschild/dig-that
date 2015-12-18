@@ -457,7 +457,7 @@ var startGame = function () {
 	if (round == 1) {
 		tunnelLength = Math.floor(Math.random() * 13) + 8;
 		maxTunnelLength = tunnelLength;
-		alert("tunnel length is " + tunnelLength);
+		alert("Maximum tunnel length is " + tunnelLength + ".");
 	} else {
 		tunnelLength = maxTunnelLength;
 	}
@@ -484,7 +484,7 @@ var doneAddingTunnels = function () {
 
 	// If the tunnel isn't valid, don't let the game keep going
 	if(!valid) {
-		alert("Your tunnel is invalid. It must start on the top edge, end on the bottom edge, and be a single simple path");
+		alert("Your tunnel is invalid. It must start on the top edge, end on the bottom edge, and be a single simple path.");
 		return;
 	}
 
@@ -532,10 +532,6 @@ var doneAddingProbes = function () {
 			$("#p" + probesList[i]).addClass("detectedEdge");
 		}
 	}
-	// Iterate through probesList to turn off and delete
-	// for (var i = 0; i < probesList.length; i++) {
-	// 	$("#p" + probesList[i]).addClass("detectedEdge");
-	// }
 
 	if (gameState == 1 || gameState == 2) {
 		//update score
@@ -673,9 +669,9 @@ var submitGuess = function () {
 		console.log("clone length ", clone.length);
 		if (!clone.length) {
 			if (round == 1) {
-				alert("Good job. Your score is " + player1Score);
+				alert("Good job. Your score is " + player1Score + ".");
 			} else {
-				alert("Good job. Your score is " + player2Score);
+				alert("Good job. Your score is " + player2Score + ".");
 			}
 		} else {
 			if (round == 1) {
@@ -696,6 +692,8 @@ var submitGuess = function () {
 		restartGame();
 	} else if (computer == 1) {
 		alert("Game over. You may submit your score.");
+		document.getElementById('submitGuess').style.display = 'none';
+		message.innerHTML = "";
 		document.getElementById("score").style.display="inline-block";
 	} else {
 		if (player1Score < player2Score ) {
@@ -713,7 +711,11 @@ var submitGuess = function () {
 			}
 		} else {
 			alert("The game is over. Your score is " + player1Score + ". You can save your score.");
+			document.getElementById('submitGuess').style.display = 'none';
+			message.innerHTML = "";
 		}
+		document.getElementById('submitGuess').style.display = 'none';
+		message.innerHTML = "";
 		document.getElementById("score").style.display="inline-block";
 	}	
 };
