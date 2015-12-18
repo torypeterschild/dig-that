@@ -27,7 +27,8 @@ var gameState = -1;
 	// 0 = badGuy placing tunnels
 	// 1 = detector placing 1st hour probes
 	// 2 = detector placing 2nd hour probes
-	// 3 = detector detecting
+	// 3 = detector placing 3rd hour probes
+	// 4 = detector detecting
 
 
 // Clear the board before a new game
@@ -380,7 +381,7 @@ var edgeClicked = function() {
 		remainingPieces.innerHTML = "Edges left: " + tunnelLength;
 		console.log(tunnel.edges);
 		console.log("Tunnel nodes: ", tunnel.nodes);
-	} else if (gameState == 3) {
+	} else if (gameState == 4) {
 		if (finalTunnelGuess.indexOf(edgeId) > -1) {
 			finalTunnelGuess.splice(finalTunnelGuess.indexOf(edgeId), 1);
 		} else {
@@ -398,7 +399,7 @@ for(var i = 0; i < edges.length; i++){
 var probes = document.getElementsByClassName("probe");
 
 var probeClicked = function() {
-	if (gameState == 1 || gameState == 2) {
+	if (gameState == 1 || gameState == 2 || gameState == 3) {
 		$(this).toggleClass("animate");
 		probeId = this.id;
 		console.log("Probe id: ", probeId);
@@ -536,16 +537,16 @@ var doneAddingProbes = function () {
 	// 	$("#p" + probesList[i]).addClass("detectedEdge");
 	// }
 
-	if (gameState == 1) {
+	if (gameState == 1 || gameState == 2) {
 		//update score
 		if (computer == 1) {
 			//only need to update player1 score
-			player1Score = probesList.length;
+			player1Score += probesList.length;
 		} else {
 			if (round == 1) {
-				player1Score = probesList.length;
+				player1Score += probesList.length;
 			} else {
-				player2Score = probesList.length;
+				player2Score += probesList.length;
 			}
 		}
 
@@ -554,22 +555,22 @@ var doneAddingProbes = function () {
 		console.log("player 2 score: " + player2Score);
 
 		probesList = [];
-		message.innerHTML = "Detector, please place the second round of probes.";
+		message.innerHTML = "Detector, please place another round of probes.";
 		document.getElementById('probesPlaced1').style.display = 'none';
 		document.getElementById('probesPlaced2').style.display = 'block';
 
 		gameState++;
 
-	} else if (gameState == 2) {
+	} else if (gameState == 3) {
 		// Update score
 		if (computer == 1) {
 			// Only need to update player1 score
-			player1Score = Math.max(player1Score, probesList.length);
+			player1Score += probesList.length;
 		} else {
 			if (round == 1) {
-				player1Score = Math.max(player1Score, probesList.length);
+				player1Score += probesList.length;
 			} else {
-				player2Score = Math.max(player2Score, probesList.length);
+				player2Score += probesList.length;
 			}
 		}
 
