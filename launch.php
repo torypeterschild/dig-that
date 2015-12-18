@@ -239,7 +239,7 @@
                     <input type="button" class="button grad transition" id="startEasyAI" value="Play with AI in Easy Mode" style="display: block">
                     <input type="button" class="button grad transition" id="tunnelDone" value="I'm done building my tunnel." style="display: none">
                     <input type="button" class="button grad transition" id="probesPlaced1" value="Done placing first round of probes." style="display: none">
-                    <input type="button" class="button grad transition" id="probesPlaced2" value="Done placing second round of probes." style="display: none">
+                    <input type="button" class="button grad transition" id="probesPlaced2" value="Done placing another round of probes." style="display: none">
                     <input type="button" class="button grad transition" id="submitGuess" value="Ready to submit final guess." style="display: none">
                     <button id="score" style="display:none" onClick="postScore(winningScore, winningPlayer)" type="button">Save Score</button>
                 </div>
