@@ -8,11 +8,12 @@
 }
 
 #gridWrapper {
-    position: relative;
+    position: absolute;
     width: 960px;
     margin-left:30px;
     margin-right:auto;
     margin-bottom: 20px;
+    padding-bottom: 20px;
     background-color: transparent;
 }
 
@@ -198,8 +199,10 @@ div.popup {
 }
 
 body {
+    position: relative;
     border-width: 0px;
-    padding: auto;
+    padding-bottom: 50px;
+    margin-bottom: 50px;
     background-color: #f5f8fa !important;
 }
 
