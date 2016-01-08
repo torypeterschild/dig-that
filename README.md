@@ -1,6 +1,9 @@
 # digthat
 
-Description
+To view locally, open boardGrid.html in a browser.
+Game logic is in main.js.
+
+The game:
 
 There is a grid. Some bad guys have placed a tunnel from the bottom, beginning at the intersection marked Start in the south, and ending at End in the north. The tunnel follows the path of the roads somehow but may wind around. It is also a simple path (no dead ends and no loops along the way). You want to probe a minimum number of times and yet be able to find the exact route of the tunnel.
 
